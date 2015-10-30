@@ -7,23 +7,96 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B719B2BE1BDAFD6C0044AF9D /* CreateLeagueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B2BD1BDAFD6C0044AF9D /* CreateLeagueViewController.swift */; };
+		B719B2C01BDB05220044AF9D /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B2BF1BDB05220044AF9D /* Helpers.swift */; };
+		B719B2C21BDBC09E0044AF9D /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B2C11BDBC09E0044AF9D /* TeamTableViewCell.swift */; };
+		B719B2C41BDBE8790044AF9D /* CreateCoachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B2C31BDBE8790044AF9D /* CreateCoachViewController.swift */; };
+		B719B2C61BDD75D40044AF9D /* CreateGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B2C51BDD75D40044AF9D /* CreateGameViewController.swift */; };
+		B719B2CD1BDDBF3C0044AF9D /* SelectLeagueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B2CC1BDDBF3C0044AF9D /* SelectLeagueViewController.swift */; };
+		B719B2CF1BDDCA110044AF9D /* SelectTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B2CE1BDDCA110044AF9D /* SelectTeamViewController.swift */; };
+		B73877301BD4505C0093FD93 /* LeagueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B738772F1BD4505C0093FD93 /* LeagueViewController.swift */; };
+		B73877321BD460EA0093FD93 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73877311BD460EA0093FD93 /* Team.swift */; };
+		B73877351BD462620093FD93 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73877341BD462620093FD93 /* ParseClient.swift */; };
+		B73877371BD465A00093FD93 /* CoreDataContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73877361BD465A00093FD93 /* CoreDataContext.swift */; };
 		B772C0A31BC5ED4D00000ECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B772C0A21BC5ED4D00000ECF /* AppDelegate.swift */; };
-		B772C0A51BC5ED4D00000ECF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B772C0A41BC5ED4D00000ECF /* ViewController.swift */; };
+		B772C0A51BC5ED4D00000ECF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B772C0A41BC5ED4D00000ECF /* LoginViewController.swift */; };
 		B772C0A81BC5ED4E00000ECF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B772C0A61BC5ED4E00000ECF /* Main.storyboard */; };
 		B772C0AB1BC5ED4E00000ECF /* BysGameStats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B772C0A91BC5ED4E00000ECF /* BysGameStats.xcdatamodeld */; };
 		B772C0AD1BC5ED4E00000ECF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B772C0AC1BC5ED4E00000ECF /* Assets.xcassets */; };
 		B772C0B01BC5ED4E00000ECF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B772C0AE1BC5ED4E00000ECF /* LaunchScreen.storyboard */; };
+		B772C0BA1BC5ED9900000ECF /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B772C0B81BC5ED9900000ECF /* Bolts.framework */; };
+		B772C0BB1BC5ED9900000ECF /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B772C0B91BC5ED9900000ECF /* Parse.framework */; };
+		B772C0BD1BC5EDD500000ECF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B772C0BC1BC5EDD500000ECF /* AudioToolbox.framework */; };
+		B772C0BF1BC5EDDD00000ECF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B772C0BE1BC5EDDD00000ECF /* CFNetwork.framework */; };
+		B772C0C11BC5EDE400000ECF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B772C0C01BC5EDE400000ECF /* CoreGraphics.framework */; };
+		B772C0C31BC5EDEB00000ECF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B772C0C21BC5EDEB00000ECF /* CoreLocation.framework */; };
+		B772C0C51BC5EDF600000ECF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B772C0C41BC5EDF600000ECF /* QuartzCore.framework */; };
+		B772C0C71BC5EDFC00000ECF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B772C0C61BC5EDFC00000ECF /* Security.framework */; };
+		B772C0C91BC5EE0400000ECF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B772C0C81BC5EE0400000ECF /* StoreKit.framework */; };
+		B772C0CB1BC5EE2500000ECF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B772C0CA1BC5EE2500000ECF /* libz.tbd */; };
+		B772C0CD1BC5EE3000000ECF /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B772C0CC1BC5EE3000000ECF /* libsqlite3.tbd */; };
+		B774461D1BC5F43600C30759 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B774461C1BC5F43600C30759 /* SystemConfiguration.framework */; };
+		B778BFBF1BE12B2E00F7EAA8 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = B778BFBE1BE12B2E00F7EAA8 /* Game.swift */; };
+		B778BFC11BE19D9E00F7EAA8 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B778BFC01BE19D9E00F7EAA8 /* TeamViewController.swift */; };
+		B77C192D1BD967AA0066F799 /* Coach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77C192C1BD967AA0066F799 /* Coach.swift */; };
+		B7AB60921BD86339001B46CF /* CreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AB60911BD86339001B46CF /* CreateTeamViewController.swift */; };
+		B7AB60941BD86555001B46CF /* LeagueAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AB60931BD86555001B46CF /* LeagueAdminViewController.swift */; };
+		B7E69D1F1BCB289A007DF0C0 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E69D1E1BCB289A007DF0C0 /* ParseUI.framework */; };
+		B7E69D251BCB3AE8007DF0C0 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E69D241BCB3AE8007DF0C0 /* BackgroundView.swift */; };
+		B7E69D2A1BCBC9C9007DF0C0 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E69D291BCBC9C9007DF0C0 /* FBSDKLoginKit.framework */; };
+		B7E69D2C1BCBC9D1007DF0C0 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E69D2B1BCBC9D1007DF0C0 /* FBSDKCoreKit.framework */; };
+		B7E69D2E1BCC6F5B007DF0C0 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E69D2D1BCC6F5B007DF0C0 /* ParseFacebookUtilsV4.framework */; };
+		B7E69D301BD1DB39007DF0C0 /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E69D2F1BD1DB39007DF0C0 /* League.swift */; };
+		B7E69D321BD1E0DB007DF0C0 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E69D311BD1E0DB007DF0C0 /* CoreDataStackManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B719B2BD1BDAFD6C0044AF9D /* CreateLeagueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateLeagueViewController.swift; sourceTree = "<group>"; };
+		B719B2BF1BDB05220044AF9D /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		B719B2C11BDBC09E0044AF9D /* TeamTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
+		B719B2C31BDBE8790044AF9D /* CreateCoachViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCoachViewController.swift; sourceTree = "<group>"; };
+		B719B2C51BDD75D40044AF9D /* CreateGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGameViewController.swift; sourceTree = "<group>"; };
+		B719B2CC1BDDBF3C0044AF9D /* SelectLeagueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLeagueViewController.swift; sourceTree = "<group>"; };
+		B719B2CE1BDDCA110044AF9D /* SelectTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTeamViewController.swift; sourceTree = "<group>"; };
+		B738772F1BD4505C0093FD93 /* LeagueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueViewController.swift; sourceTree = "<group>"; };
+		B73877311BD460EA0093FD93 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		B73877341BD462620093FD93 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
+		B73877361BD465A00093FD93 /* CoreDataContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataContext.swift; sourceTree = "<group>"; };
 		B772C09F1BC5ED4D00000ECF /* BysGameStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BysGameStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B772C0A21BC5ED4D00000ECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B772C0A41BC5ED4D00000ECF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B772C0A41BC5ED4D00000ECF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B772C0A71BC5ED4E00000ECF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B772C0AA1BC5ED4E00000ECF /* BysGameStats.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BysGameStats.xcdatamodel; sourceTree = "<group>"; };
 		B772C0AC1BC5ED4E00000ECF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B772C0AF1BC5ED4E00000ECF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B772C0B11BC5ED4E00000ECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B772C0B81BC5ED9900000ECF /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		B772C0B91BC5ED9900000ECF /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		B772C0BC1BC5EDD500000ECF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		B772C0BE1BC5EDDD00000ECF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		B772C0C01BC5EDE400000ECF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B772C0C21BC5EDEB00000ECF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B772C0C41BC5EDF600000ECF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B772C0C61BC5EDFC00000ECF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B772C0C81BC5EE0400000ECF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		B772C0CA1BC5EE2500000ECF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		B772C0CC1BC5EE3000000ECF /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		B774461C1BC5F43600C30759 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B778BFBE1BE12B2E00F7EAA8 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		B778BFC01BE19D9E00F7EAA8 /* TeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
+		B77C192C1BD967AA0066F799 /* Coach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coach.swift; sourceTree = "<group>"; };
+		B7AB60911BD86339001B46CF /* CreateTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTeamViewController.swift; sourceTree = "<group>"; };
+		B7AB60931BD86555001B46CF /* LeagueAdminViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueAdminViewController.swift; sourceTree = "<group>"; };
+		B7E69D1E1BCB289A007DF0C0 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		B7E69D241BCB3AE8007DF0C0 /* BackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		B7E69D261BCBC830007DF0C0 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		B7E69D271BCBC830007DF0C0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		B7E69D281BCBC830007DF0C0 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		B7E69D291BCBC9C9007DF0C0 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		B7E69D2B1BCBC9D1007DF0C0 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		B7E69D2D1BCC6F5B007DF0C0 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		B7E69D2F1BD1DB39007DF0C0 /* League.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
+		B7E69D311BD1E0DB007DF0C0 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,15 +104,55 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B774461D1BC5F43600C30759 /* SystemConfiguration.framework in Frameworks */,
+				B772C0CD1BC5EE3000000ECF /* libsqlite3.tbd in Frameworks */,
+				B772C0CB1BC5EE2500000ECF /* libz.tbd in Frameworks */,
+				B772C0C91BC5EE0400000ECF /* StoreKit.framework in Frameworks */,
+				B7E69D2A1BCBC9C9007DF0C0 /* FBSDKLoginKit.framework in Frameworks */,
+				B772C0C71BC5EDFC00000ECF /* Security.framework in Frameworks */,
+				B772C0C51BC5EDF600000ECF /* QuartzCore.framework in Frameworks */,
+				B772C0C31BC5EDEB00000ECF /* CoreLocation.framework in Frameworks */,
+				B772C0C11BC5EDE400000ECF /* CoreGraphics.framework in Frameworks */,
+				B772C0BF1BC5EDDD00000ECF /* CFNetwork.framework in Frameworks */,
+				B7E69D2E1BCC6F5B007DF0C0 /* ParseFacebookUtilsV4.framework in Frameworks */,
+				B7E69D2C1BCBC9D1007DF0C0 /* FBSDKCoreKit.framework in Frameworks */,
+				B772C0BD1BC5EDD500000ECF /* AudioToolbox.framework in Frameworks */,
+				B772C0BB1BC5ED9900000ECF /* Parse.framework in Frameworks */,
+				B772C0BA1BC5ED9900000ECF /* Bolts.framework in Frameworks */,
+				B7E69D1F1BCB289A007DF0C0 /* ParseUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B719B2CB1BDDBEEC0044AF9D /* AdminControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B7AB60931BD86555001B46CF /* LeagueAdminViewController.swift */,
+				B7AB60911BD86339001B46CF /* CreateTeamViewController.swift */,
+				B719B2BD1BDAFD6C0044AF9D /* CreateLeagueViewController.swift */,
+				B719B2C31BDBE8790044AF9D /* CreateCoachViewController.swift */,
+				B719B2C51BDD75D40044AF9D /* CreateGameViewController.swift */,
+				B719B2CC1BDDBF3C0044AF9D /* SelectLeagueViewController.swift */,
+				B719B2CE1BDDCA110044AF9D /* SelectTeamViewController.swift */,
+			);
+			name = AdminControllers;
+			sourceTree = "<group>";
+		};
+		B73877331BD4624F0093FD93 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				B73877341BD462620093FD93 /* ParseClient.swift */,
+				B73877361BD465A00093FD93 /* CoreDataContext.swift */,
+			);
+			name = Client;
+			sourceTree = "<group>";
+		};
 		B772C0961BC5ED4D00000ECF = {
 			isa = PBXGroup;
 			children = (
+				B772C0B71BC5ED8A00000ECF /* Frameworks */,
 				B772C0A11BC5ED4D00000ECF /* BysGameStats */,
 				B772C0A01BC5ED4D00000ECF /* Products */,
 			);
@@ -56,15 +169,85 @@
 		B772C0A11BC5ED4D00000ECF /* BysGameStats */ = {
 			isa = PBXGroup;
 			children = (
+				B7E69D1A1BCB244F007DF0C0 /* Model */,
+				B7E69D1C1BCB2460007DF0C0 /* Controller */,
+				B7E69D1B1BCB2458007DF0C0 /* View */,
+				B7E69D1D1BCB2469007DF0C0 /* SupportingFiles */,
 				B772C0A21BC5ED4D00000ECF /* AppDelegate.swift */,
-				B772C0A41BC5ED4D00000ECF /* ViewController.swift */,
 				B772C0A61BC5ED4E00000ECF /* Main.storyboard */,
 				B772C0AC1BC5ED4E00000ECF /* Assets.xcassets */,
 				B772C0AE1BC5ED4E00000ECF /* LaunchScreen.storyboard */,
 				B772C0B11BC5ED4E00000ECF /* Info.plist */,
 				B772C0A91BC5ED4E00000ECF /* BysGameStats.xcdatamodeld */,
+				B7E69D311BD1E0DB007DF0C0 /* CoreDataStackManager.swift */,
 			);
 			path = BysGameStats;
+			sourceTree = "<group>";
+		};
+		B772C0B71BC5ED8A00000ECF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7E69D2D1BCC6F5B007DF0C0 /* ParseFacebookUtilsV4.framework */,
+				B7E69D2B1BCBC9D1007DF0C0 /* FBSDKCoreKit.framework */,
+				B7E69D291BCBC9C9007DF0C0 /* FBSDKLoginKit.framework */,
+				B7E69D1E1BCB289A007DF0C0 /* ParseUI.framework */,
+				B774461C1BC5F43600C30759 /* SystemConfiguration.framework */,
+				B772C0CC1BC5EE3000000ECF /* libsqlite3.tbd */,
+				B772C0CA1BC5EE2500000ECF /* libz.tbd */,
+				B772C0C81BC5EE0400000ECF /* StoreKit.framework */,
+				B772C0C61BC5EDFC00000ECF /* Security.framework */,
+				B772C0C41BC5EDF600000ECF /* QuartzCore.framework */,
+				B772C0C21BC5EDEB00000ECF /* CoreLocation.framework */,
+				B772C0C01BC5EDE400000ECF /* CoreGraphics.framework */,
+				B772C0BE1BC5EDDD00000ECF /* CFNetwork.framework */,
+				B772C0BC1BC5EDD500000ECF /* AudioToolbox.framework */,
+				B772C0B81BC5ED9900000ECF /* Bolts.framework */,
+				B772C0B91BC5ED9900000ECF /* Parse.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B7E69D1A1BCB244F007DF0C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B73877331BD4624F0093FD93 /* Client */,
+				B7E69D2F1BD1DB39007DF0C0 /* League.swift */,
+				B73877311BD460EA0093FD93 /* Team.swift */,
+				B77C192C1BD967AA0066F799 /* Coach.swift */,
+				B778BFBE1BE12B2E00F7EAA8 /* Game.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		B7E69D1B1BCB2458007DF0C0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B7E69D241BCB3AE8007DF0C0 /* BackgroundView.swift */,
+				B719B2C11BDBC09E0044AF9D /* TeamTableViewCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		B7E69D1C1BCB2460007DF0C0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B719B2CB1BDDBEEC0044AF9D /* AdminControllers */,
+				B772C0A41BC5ED4D00000ECF /* LoginViewController.swift */,
+				B738772F1BD4505C0093FD93 /* LeagueViewController.swift */,
+				B778BFC01BE19D9E00F7EAA8 /* TeamViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		B7E69D1D1BCB2469007DF0C0 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B7E69D261BCBC830007DF0C0 /* Roboto-Medium.ttf */,
+				B7E69D271BCBC830007DF0C0 /* Roboto-Regular.ttf */,
+				B7E69D281BCBC830007DF0C0 /* Roboto-Thin.ttf */,
+				B719B2BF1BDB05220044AF9D /* Helpers.swift */,
+			);
+			name = SupportingFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +321,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B772C0A51BC5ED4D00000ECF /* ViewController.swift in Sources */,
+				B719B2C61BDD75D40044AF9D /* CreateGameViewController.swift in Sources */,
+				B719B2BE1BDAFD6C0044AF9D /* CreateLeagueViewController.swift in Sources */,
+				B73877351BD462620093FD93 /* ParseClient.swift in Sources */,
+				B7E69D251BCB3AE8007DF0C0 /* BackgroundView.swift in Sources */,
+				B772C0A51BC5ED4D00000ECF /* LoginViewController.swift in Sources */,
+				B719B2C41BDBE8790044AF9D /* CreateCoachViewController.swift in Sources */,
+				B77C192D1BD967AA0066F799 /* Coach.swift in Sources */,
+				B7AB60921BD86339001B46CF /* CreateTeamViewController.swift in Sources */,
 				B772C0A31BC5ED4D00000ECF /* AppDelegate.swift in Sources */,
+				B778BFC11BE19D9E00F7EAA8 /* TeamViewController.swift in Sources */,
+				B7AB60941BD86555001B46CF /* LeagueAdminViewController.swift in Sources */,
+				B73877301BD4505C0093FD93 /* LeagueViewController.swift in Sources */,
+				B73877321BD460EA0093FD93 /* Team.swift in Sources */,
+				B73877371BD465A00093FD93 /* CoreDataContext.swift in Sources */,
+				B7E69D301BD1DB39007DF0C0 /* League.swift in Sources */,
+				B719B2C21BDBC09E0044AF9D /* TeamTableViewCell.swift in Sources */,
+				B719B2CF1BDDCA110044AF9D /* SelectTeamViewController.swift in Sources */,
+				B778BFBF1BE12B2E00F7EAA8 /* Game.swift in Sources */,
 				B772C0AB1BC5ED4E00000ECF /* BysGameStats.xcdatamodeld in Sources */,
+				B719B2CD1BDDBF3C0044AF9D /* SelectLeagueViewController.swift in Sources */,
+				B719B2C01BDB05220044AF9D /* Helpers.swift in Sources */,
+				B7E69D321BD1E0DB007DF0C0 /* CoreDataStackManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +455,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BysGameStats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tenchjames.BysGameStats;
@@ -264,6 +470,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BysGameStats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tenchjames.BysGameStats;
@@ -290,6 +500,7 @@
 				B772C0B61BC5ED4E00000ECF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

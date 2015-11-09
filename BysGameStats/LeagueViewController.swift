@@ -12,14 +12,18 @@ import CoreData
 
 class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var leagueNameLabel: UILabel!
-    @IBOutlet weak var commissionerNameLabel: UILabel!
-    @IBOutlet weak var leagueAgeGroupLabel: UILabel!
-    @IBOutlet weak var leagueTypeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var adminButton: AdminButton!
+    @IBOutlet weak var summaryView: UIView!
+    @IBOutlet weak var leagueSelectButton: UIBarButtonItem!
+
+    // todo add transparent image logos that can be used per team
     var primaryLeague: League?
     var teams: [Team] = [Team]()
     let parseClient = ParseClient.sharedInstance
+    // variable to stop screen swapping look...just hide stuff until loaded first time
+    // app is called
+    var firstLoad = true
     
     let coreDataContext = CoreDataContext.sharedInstance
     var sharedContext: NSManagedObjectContext {
@@ -29,94 +33,66 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var stackManager: CoreDataStackManager {
         return CoreDataStackManager.sharedInstance()
     }
-    
+
+    var tapGestureRecognizer: UITapGestureRecognizer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "handleTripleTaps:")
+        tapGestureRecognizer.numberOfTapsRequired = 3
+        summaryView.addGestureRecognizer(tapGestureRecognizer)
+        adminButton.enabled = false
+        adminButton.hidden = true
+        guard let _ = self.primaryLeague else {
+            showLeagues(true)
+            return
+        }
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if firstLoad {
+            firstLoad = false
+            tableView.hidden = true
+            summaryView.hidden = true
+        } else {
+            tableView.hidden = false
+            summaryView.hidden = false
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        // Do any additional setup after loading the view.
         // if a primary league is selected, show the details
         // else prompt the user to pick their primary league from a list
         if let primaryLeague = self.primaryLeague {
             leagueNameLabel.text = primaryLeague.leagueName
-            commissionerNameLabel.text = primaryLeague.commissionerEmail
-            leagueAgeGroupLabel.text = primaryLeague.ageGroup
-            leagueTypeLabel.text = primaryLeague.leagueType
             getTeamsByLeague(primaryLeague);
-            
+            // if the league changes, keep it in sync on the other tab for schedules
+            let navController = self.tabBarController?.viewControllers![1] as! UINavigationController
+            let scheduleTab = navController.topViewController as! LeagueScheduleViewController
+            scheduleTab.primaryLeague = self.primaryLeague
         }
     }
     
+    func handleTripleTaps(recognizer: UITapGestureRecognizer) {
+        adminButton.enabled = !adminButton.enabled
+        adminButton.hidden = !adminButton.hidden
+    }
     
     func getTeamsByLeague(league: League) {
-        // todo: check coredata first
-        
-        
-        
-        parseClient.getTeamsByLeague(league) { result, error in
-            // TODO: handle if error
-            
-            
-            if let teamArray = result {
-                self.teams.removeAll(keepCapacity: true)
-                for team in teamArray {
-                    var dict: [String:AnyObject] = [:]
-                    
-                    dict["teamName"] = ""
-                    dict["teamColor"] = "127.0|127.0|127.0"
-                    dict["gamesWon"] = 0
-                    dict["gamesLost"] = 0
-                    dict["gamesTied"] = nil
-                    dict["leagueId"] = ""
-                    dict["objectId"] = team.objectId!
-                    dict["updatedAt"] = team.updatedAt!
-                    
-                    if let teamName = team["teamName"] as? String {
-                        dict["teamName"] = teamName
-                    }
-                    if let gamesWon = team["gamesWon"] as? Int {
-                        dict["gamesWon"] = gamesWon
-                    }
-                    if let gamesLost = team["gamesLost"] as? Int {
-                        dict["gamesLost"] = gamesLost
-                    }
-                    if let gamesTied = team["gamesTied"] as? Int {
-                        dict["gamesTied"] = gamesTied
-                    }
-                    if let headCoach = team["headCoach"] as? Int {
-                        dict["headCoach"] = headCoach
-                    }
-                    if let leagueId = team["leagueId"] as? PFObject {
-                        dict["leagueId"] = leagueId.objectId!
-                    }
-                    if let teamColor = team["teamColor"] as? String {
-                        dict["teamColor"] = teamColor
-                    }
-
-                    // store the data we got from parse in core data so app can be
-                    // used offline if user is not connected to the internet
-                    
-                    if let coredataTeam = self.coreDataContext.getTeamByObjectId(team.objectId!) {
-                        self.teams.append(coredataTeam)
-                        coredataTeam.updateObject(dict)
-                        coredataTeam.league = league
-                    } else {
-                        let newTeam = Team(dictionary: dict, context: self.sharedContext)
-                        newTeam.league = league
-                        self.teams.append(newTeam)
-                    }
-                }
-                // after all teams are created, reolad table view
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.stackManager.saveContext()
-                    self.teams.sortInPlace({$0.gamesWon > $1.gamesWon})
-                    self.tableView.reloadData()
-                }
+        if let teamArray = coreDataContext.getTeamsByLeague(league) {
+            self.teams.removeAll(keepCapacity: true)
+            for team in teamArray {
+                self.teams.append(team)
             }
+            self.teams.sortInPlace({$0.gamesWon > $1.gamesWon})
+            self.tableView.reloadData()
+        }
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row % 2 == 1 {
+            cell.backgroundColor = UIColor(red: 245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1.0)
         }
     }
     
@@ -129,19 +105,29 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let team = self.teams[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! TeamTableViewCell
         
-        let colorParts = team.teamColor.characters.split{$0 == "|"}.map(String.init)
-        let r: CGFloat = CGFloat((colorParts[0] as NSString).floatValue)
-        let g: CGFloat = CGFloat((colorParts[1] as NSString).floatValue)
-        let b: CGFloat = CGFloat((colorParts[2] as NSString).floatValue)
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         
         cell.teamNameLabel.text = team.teamName
         cell.gamesWonLabel.text = "\(team.gamesWon)"
         cell.gamesLostLabel.text = "\(team.gamesLost)"
         cell.gamesTiedLabel.text = "\(team.gamesTied)"
-        
-        cell.backgroundColor = UIColor(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: 1.0)
+        cell.teamImageView.backgroundColor = team.getColor()
 
         return cell
-
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let destinationViewController = storyboard?.instantiateViewControllerWithIdentifier("TeamViewController") as! TeamViewController
+        
+        destinationViewController.team = teams[indexPath.row]
+        destinationViewController.league = primaryLeague
+        self.navigationController?.pushViewController(destinationViewController, animated: true)
+    }
+    
+    @IBAction func showLeagues(isInitialLoad: Bool) {
+        let leagueSelectionController = self.storyboard!.instantiateViewControllerWithIdentifier("LoadLeagueViewController") as! LoadLeagueViewController
+        leagueSelectionController.isInitialLoad = isInitialLoad
+        self.presentViewController(leagueSelectionController, animated: true, completion: nil)
+        
     }
 }

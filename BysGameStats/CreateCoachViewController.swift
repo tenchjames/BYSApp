@@ -119,9 +119,7 @@ class CreateCoachViewController: UIViewController, UITextFieldDelegate {
         }
         
         coachName = coachName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        
         coachEmail = coachEmail.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        
         coachCellPhone = coachCellPhone.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
         let isHeadCoach = isHeadCoachSlider.on
@@ -185,28 +183,5 @@ class CreateCoachViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
-        
-
-        
-        
     }
-    
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

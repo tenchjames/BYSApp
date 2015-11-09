@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import UIKit
 
 @objc(Team)
 
@@ -54,13 +55,25 @@ class Team: NSManagedObject {
             self.gamesLost = gamesLost
         }
         
-        if let gamesTied = dictionary["gamesTield"] as? Int {
+        if let gamesTied = dictionary["gamesTied"] as? Int {
             self.gamesTied = gamesTied
         }
         
         if let teamColor = dictionary["teamColor"] as? String {
             self.teamColor = teamColor
         }
+        
+        if let league = dictionary["league"] as? League {
+            self.league = league
+        }
+    }
+    
+    func getColor() -> UIColor {
+        let colorParts = teamColor.characters.split{$0 == "|"}.map(String.init)
+        let r: CGFloat = CGFloat((colorParts[0] as NSString).floatValue)
+        let g: CGFloat = CGFloat((colorParts[1] as NSString).floatValue)
+        let b: CGFloat = CGFloat((colorParts[2] as NSString).floatValue)
+        return UIColor(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: 1.0)
     }
     
 }

@@ -29,7 +29,6 @@ class CreateGameViewController: UIViewController, UITableViewDataSource, UITable
         return CoreDataStackManager.sharedInstance()
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,7 +43,7 @@ class CreateGameViewController: UIViewController, UITableViewDataSource, UITable
         if let awayTeam = awayTeam {
             teamNames[1] = awayTeam.teamName
         }
-        if homeTeam == nil || awayTeam == nil {
+        if homeTeam == nil || awayTeam == nil || homeTeam == awayTeam {
             submitButton.enabled = false
         } else {
             submitButton.enabled = true
@@ -137,6 +136,7 @@ class CreateGameViewController: UIViewController, UITableViewDataSource, UITable
                         let newGame = PFObject(className: "Game")
                         newGame["homeTeamScore"] = 0
                         newGame["awayTeamScore"] = 0
+                        newGame["status"] = "scheduled"
                         newGame["originalScheduledDate"] = self.dateScheduled
                         newGame["currentlyScheduledDate"] = self.dateScheduled
                         newGame["leaguePointer"] = leaguePointer

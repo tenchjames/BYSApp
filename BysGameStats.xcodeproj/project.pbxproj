@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B70F1EC81BF02DF70079ECB1 /* BYSPFLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70F1EC71BF02DF70079ECB1 /* BYSPFLoginViewController.swift */; };
 		B719B2BE1BDAFD6C0044AF9D /* CreateLeagueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B2BD1BDAFD6C0044AF9D /* CreateLeagueViewController.swift */; };
 		B719B2C01BDB05220044AF9D /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B2BF1BDB05220044AF9D /* Helpers.swift */; };
 		B719B2C21BDBC09E0044AF9D /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B2C11BDBC09E0044AF9D /* TeamTableViewCell.swift */; };
@@ -38,7 +39,14 @@
 		B774461D1BC5F43600C30759 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B774461C1BC5F43600C30759 /* SystemConfiguration.framework */; };
 		B778BFBF1BE12B2E00F7EAA8 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = B778BFBE1BE12B2E00F7EAA8 /* Game.swift */; };
 		B778BFC11BE19D9E00F7EAA8 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B778BFC01BE19D9E00F7EAA8 /* TeamViewController.swift */; };
+		B778BFC31BE44C9700F7EAA8 /* LoadLeagueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B778BFC21BE44C9700F7EAA8 /* LoadLeagueViewController.swift */; };
 		B77C192D1BD967AA0066F799 /* Coach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77C192C1BD967AA0066F799 /* Coach.swift */; };
+		B7803A591BE52A48004EA29D /* GameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7803A581BE52A48004EA29D /* GameTableViewCell.swift */; };
+		B7803A5B1BE5909C004EA29D /* AdminButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7803A5A1BE5909C004EA29D /* AdminButton.swift */; };
+		B7A1829E1BE63A85007AD603 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A1829D1BE63A85007AD603 /* ScheduleTableViewCell.swift */; };
+		B7A182A01BE64540007AD603 /* VSRoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A1829F1BE64540007AD603 /* VSRoundView.swift */; };
+		B7A182A21BE6460A007AD603 /* LeagueScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A182A11BE6460A007AD603 /* LeagueScheduleViewController.swift */; };
+		B7A562A61BEE622B006176CB /* EditGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A562A51BEE622B006176CB /* EditGameViewController.swift */; };
 		B7AB60921BD86339001B46CF /* CreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AB60911BD86339001B46CF /* CreateTeamViewController.swift */; };
 		B7AB60941BD86555001B46CF /* LeagueAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AB60931BD86555001B46CF /* LeagueAdminViewController.swift */; };
 		B7E69D1F1BCB289A007DF0C0 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E69D1E1BCB289A007DF0C0 /* ParseUI.framework */; };
@@ -51,6 +59,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B70F1EC71BF02DF70079ECB1 /* BYSPFLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BYSPFLoginViewController.swift; sourceTree = "<group>"; };
 		B719B2BD1BDAFD6C0044AF9D /* CreateLeagueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateLeagueViewController.swift; sourceTree = "<group>"; };
 		B719B2BF1BDB05220044AF9D /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		B719B2C11BDBC09E0044AF9D /* TeamTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
@@ -84,7 +93,14 @@
 		B774461C1BC5F43600C30759 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B778BFBE1BE12B2E00F7EAA8 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		B778BFC01BE19D9E00F7EAA8 /* TeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
+		B778BFC21BE44C9700F7EAA8 /* LoadLeagueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadLeagueViewController.swift; sourceTree = "<group>"; };
 		B77C192C1BD967AA0066F799 /* Coach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coach.swift; sourceTree = "<group>"; };
+		B7803A581BE52A48004EA29D /* GameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTableViewCell.swift; sourceTree = "<group>"; };
+		B7803A5A1BE5909C004EA29D /* AdminButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminButton.swift; sourceTree = "<group>"; };
+		B7A1829D1BE63A85007AD603 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
+		B7A1829F1BE64540007AD603 /* VSRoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSRoundView.swift; sourceTree = "<group>"; };
+		B7A182A11BE6460A007AD603 /* LeagueScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueScheduleViewController.swift; sourceTree = "<group>"; };
+		B7A562A51BEE622B006176CB /* EditGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGameViewController.swift; sourceTree = "<group>"; };
 		B7AB60911BD86339001B46CF /* CreateTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTeamViewController.swift; sourceTree = "<group>"; };
 		B7AB60931BD86555001B46CF /* LeagueAdminViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueAdminViewController.swift; sourceTree = "<group>"; };
 		B7E69D1E1BCB289A007DF0C0 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
@@ -136,6 +152,7 @@
 				B719B2C51BDD75D40044AF9D /* CreateGameViewController.swift */,
 				B719B2CC1BDDBF3C0044AF9D /* SelectLeagueViewController.swift */,
 				B719B2CE1BDDCA110044AF9D /* SelectTeamViewController.swift */,
+				B7A562A51BEE622B006176CB /* EditGameViewController.swift */,
 			);
 			name = AdminControllers;
 			sourceTree = "<group>";
@@ -224,6 +241,11 @@
 			children = (
 				B7E69D241BCB3AE8007DF0C0 /* BackgroundView.swift */,
 				B719B2C11BDBC09E0044AF9D /* TeamTableViewCell.swift */,
+				B7803A581BE52A48004EA29D /* GameTableViewCell.swift */,
+				B7803A5A1BE5909C004EA29D /* AdminButton.swift */,
+				B7A1829D1BE63A85007AD603 /* ScheduleTableViewCell.swift */,
+				B7A1829F1BE64540007AD603 /* VSRoundView.swift */,
+				B70F1EC71BF02DF70079ECB1 /* BYSPFLoginViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -235,6 +257,8 @@
 				B772C0A41BC5ED4D00000ECF /* LoginViewController.swift */,
 				B738772F1BD4505C0093FD93 /* LeagueViewController.swift */,
 				B778BFC01BE19D9E00F7EAA8 /* TeamViewController.swift */,
+				B778BFC21BE44C9700F7EAA8 /* LoadLeagueViewController.swift */,
+				B7A182A11BE6460A007AD603 /* LeagueScheduleViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -325,14 +349,20 @@
 				B719B2BE1BDAFD6C0044AF9D /* CreateLeagueViewController.swift in Sources */,
 				B73877351BD462620093FD93 /* ParseClient.swift in Sources */,
 				B7E69D251BCB3AE8007DF0C0 /* BackgroundView.swift in Sources */,
+				B7A182A21BE6460A007AD603 /* LeagueScheduleViewController.swift in Sources */,
 				B772C0A51BC5ED4D00000ECF /* LoginViewController.swift in Sources */,
 				B719B2C41BDBE8790044AF9D /* CreateCoachViewController.swift in Sources */,
+				B7A562A61BEE622B006176CB /* EditGameViewController.swift in Sources */,
 				B77C192D1BD967AA0066F799 /* Coach.swift in Sources */,
+				B7803A5B1BE5909C004EA29D /* AdminButton.swift in Sources */,
+				B778BFC31BE44C9700F7EAA8 /* LoadLeagueViewController.swift in Sources */,
 				B7AB60921BD86339001B46CF /* CreateTeamViewController.swift in Sources */,
 				B772C0A31BC5ED4D00000ECF /* AppDelegate.swift in Sources */,
 				B778BFC11BE19D9E00F7EAA8 /* TeamViewController.swift in Sources */,
 				B7AB60941BD86555001B46CF /* LeagueAdminViewController.swift in Sources */,
 				B73877301BD4505C0093FD93 /* LeagueViewController.swift in Sources */,
+				B7A182A01BE64540007AD603 /* VSRoundView.swift in Sources */,
+				B7A1829E1BE63A85007AD603 /* ScheduleTableViewCell.swift in Sources */,
 				B73877321BD460EA0093FD93 /* Team.swift in Sources */,
 				B73877371BD465A00093FD93 /* CoreDataContext.swift in Sources */,
 				B7E69D301BD1DB39007DF0C0 /* League.swift in Sources */,
@@ -340,9 +370,11 @@
 				B719B2CF1BDDCA110044AF9D /* SelectTeamViewController.swift in Sources */,
 				B778BFBF1BE12B2E00F7EAA8 /* Game.swift in Sources */,
 				B772C0AB1BC5ED4E00000ECF /* BysGameStats.xcdatamodeld in Sources */,
+				B70F1EC81BF02DF70079ECB1 /* BYSPFLoginViewController.swift in Sources */,
 				B719B2CD1BDDBF3C0044AF9D /* SelectLeagueViewController.swift in Sources */,
 				B719B2C01BDB05220044AF9D /* Helpers.swift in Sources */,
 				B7E69D321BD1E0DB007DF0C0 /* CoreDataStackManager.swift in Sources */,
+				B7803A591BE52A48004EA29D /* GameTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import CoreData
 
 class CreateLeagueViewController: UIViewController, UITextFieldDelegate {
     
@@ -17,6 +18,15 @@ class CreateLeagueViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var commissionerEmail: UITextField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var yearTextField: UITextField!
+    
+    let parseClient = ParseClient.sharedInstance
+    let coreDataContext = CoreDataContext.sharedInstance
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }
+    var stackManager: CoreDataStackManager {
+        return CoreDataStackManager.sharedInstance()
+    }
 
 
     override func viewDidLoad() {
@@ -159,6 +169,20 @@ class CreateLeagueViewController: UIViewController, UITextFieldDelegate {
                                 ac.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
                                 self.presentViewController(ac, animated: true, completion: nil)
                             } else {
+                                let dict : [String: AnyObject] = [
+                                    "objectId" : newLeague.objectId!,
+                                    "year" : Int(year)!,
+                                    "leagueType" : league,
+                                    "ageGroup" : group,
+                                    "commissionerEmail" : email,
+                                    "leagueName" : name
+                                ]
+                                
+                                let _ = League(dictionary: dict, context: self.sharedContext)
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    self.stackManager.saveContext()
+                                }
+
                                 let ac = UIAlertController(title: "Success", message: "The New League has been added!", preferredStyle: .Alert)
                                 ac.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
                                 self.presentViewController(ac, animated: true, completion: nil)

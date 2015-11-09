@@ -19,11 +19,19 @@ class CreateTeamViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var leagueNameLabel: UILabel!
 
-    let parseClient = ParseClient.sharedInstance
-
+    
     var leagues = [League]()
     var selectedLeague : League?
     var teamColor: String?
+    
+    let parseClient = ParseClient.sharedInstance
+    let coreDataContext = CoreDataContext.sharedInstance
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }
+    var stackManager: CoreDataStackManager {
+        return CoreDataStackManager.sharedInstance()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,9 +110,13 @@ class CreateTeamViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func submitNewTeam() {
         // should be valid if submitting it passed validation tests
+        guard let selectedLeague = selectedLeague else {
+            return
+        }
+        
         let name = teamName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         let pointer = PFObject(className: "League")
-        pointer.objectId = selectedLeague!.objectId
+        pointer.objectId = selectedLeague.objectId
         
         let teamQuery = PFQuery(className: "Team")
         teamQuery.whereKey("teamName", equalTo: name)
@@ -125,9 +137,6 @@ class CreateTeamViewController: UIViewController, UITextFieldDelegate {
                         let newTeam = PFObject(className: "Team")
                         newTeam["teamName"] = name
                         newTeam["league"] = pointer
-                        newTeam["gamesWon"] = 0
-                        newTeam["gamesLost"] = 0
-                        newTeam["gamesTied"] = 0
                         newTeam["teamColor"] = self.teamColor!
                         newTeam.saveInBackgroundWithBlock() { result, error in
                             if let _ = error {
@@ -135,6 +144,21 @@ class CreateTeamViewController: UIViewController, UITextFieldDelegate {
                                 ac.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
                                 self.presentViewController(ac, animated: true, completion: nil)
                             } else {
+                                let dict = [
+                                    "objectId" : newTeam.objectId!,
+                                    "teamName" : name,
+                                    "league" : selectedLeague,
+                                    "teamColor" : self.teamColor!,
+                                    "gamesWon" : 0,
+                                    "gamesLost" : 0,
+                                    "gamesTied" : 0
+                                ]
+
+                                let _ = Team(dictionary: dict, context: self.sharedContext)
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    self.stackManager.saveContext()
+                                }
+
                                 let ac = UIAlertController(title: "Success", message: "The New Team has been added!", preferredStyle: .Alert)
                                 ac.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
                                 self.presentViewController(ac, animated: true, completion: nil)

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15A284" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Automatic">
     <entity name="Coach" representedClassName="Coach" syncable="YES">
         <attribute name="cellPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="coachEmail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="coachName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isHeadCoach" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objectId" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="league" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="League" inverseName="coaches" inverseEntity="League" syncable="YES"/>
         <relationship name="teamCoaching" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="coaches" inverseEntity="Team" syncable="YES"/>
@@ -14,8 +14,9 @@
         <attribute name="awayTeamScore" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="currentlyScheduledDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="homeTeamScore" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objectId" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="originalScheduledDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="awayTeam" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="awayTeamGames" inverseEntity="Team" syncable="YES"/>
         <relationship name="homeTeam" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="homeTeamGames" inverseEntity="Team" syncable="YES"/>
         <relationship name="league" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="League" inverseName="games" inverseEntity="League" syncable="YES"/>
@@ -25,30 +26,30 @@
         <attribute name="commissionerEmail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="leagueName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="leagueType" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objectId" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="coaches" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Coach" inverseName="league" inverseEntity="Coach" syncable="YES"/>
-        <relationship name="games" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="league" inverseEntity="Game" syncable="YES"/>
-        <relationship name="teams" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="league" inverseEntity="Team" syncable="YES"/>
+        <relationship name="coaches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Coach" inverseName="league" inverseEntity="Coach" syncable="YES"/>
+        <relationship name="games" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Game" inverseName="league" inverseEntity="Game" syncable="YES"/>
+        <relationship name="teams" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Team" inverseName="league" inverseEntity="Team" syncable="YES"/>
     </entity>
     <entity name="Team" representedClassName="Team" syncable="YES">
         <attribute name="gamesLost" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="gamesTied" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="gamesWon" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objectId" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="teamColor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="teamName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="awayTeamGames" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="awayTeam" inverseEntity="Game" syncable="YES"/>
-        <relationship name="coaches" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Coach" inverseName="teamCoaching" inverseEntity="Coach" syncable="YES"/>
-        <relationship name="homeTeamGames" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="homeTeam" inverseEntity="Game" syncable="YES"/>
+        <relationship name="awayTeamGames" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Game" inverseName="awayTeam" inverseEntity="Game" syncable="YES"/>
+        <relationship name="coaches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Coach" inverseName="teamCoaching" inverseEntity="Coach" syncable="YES"/>
+        <relationship name="homeTeamGames" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Game" inverseName="homeTeam" inverseEntity="Game" syncable="YES"/>
         <relationship name="league" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="League" inverseName="teams" inverseEntity="League" syncable="YES"/>
     </entity>
     <elements>
         <element name="Coach" positionX="-54" positionY="72" width="128" height="165"/>
+        <element name="Game" positionX="-54" positionY="99" width="128" height="180"/>
         <element name="League" positionX="-63" positionY="-18" width="128" height="195"/>
         <element name="Team" positionX="-63" positionY="36" width="128" height="210"/>
-        <element name="Game" positionX="-54" positionY="99" width="128" height="165"/>
     </elements>
 </model>

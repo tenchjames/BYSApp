@@ -15,9 +15,11 @@ class Game : NSManagedObject {
     @NSManaged var currentlyScheduledDate: NSDate
     @NSManaged var homeTeamScore: Int
     @NSManaged var awayTeamScore: Int
+    @NSManaged var status: String
     @NSManaged var homeTeam: Team?
     @NSManaged var awayTeam: Team?
     @NSManaged var league: League?
+
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -47,6 +49,10 @@ class Game : NSManagedObject {
         
         if let awayTeamScore = dict["awayTeamScore"] as? Int {
             self.awayTeamScore = awayTeamScore
+        }
+        
+        if let status = dict["status"] as? String {
+            self.status = status
         }
         
         if let homeTeam = dict["homeTeam"] as? Team {

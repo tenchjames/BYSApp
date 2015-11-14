@@ -13,7 +13,7 @@ class TeamTableViewCell: UITableViewCell {
     @IBOutlet weak var gamesLostLabel: UILabel!
     @IBOutlet weak var gamesTiedLabel: UILabel!
     @IBOutlet weak var teamNameLabel: UILabel!
-    @IBOutlet weak var teamImageView: UIImageView!
+    @IBOutlet weak var teamLogoView: TeamLogoView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

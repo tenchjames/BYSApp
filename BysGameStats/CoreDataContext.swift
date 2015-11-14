@@ -226,13 +226,9 @@ class CoreDataContext {
         if let league = self.getLeagueIdByObjectId(objectId)
         {
             newLeague = league
-            dispatch_async(dispatch_get_main_queue()) {
-                league.updateObject(dict)
-            }
+            league.updateObject(dict)
         } else {
-            dispatch_async(dispatch_get_main_queue()) {
-                newLeague = League(dictionary: dict, context: self.sharedContext)
-            }
+            newLeague = League(dictionary: dict, context: self.sharedContext)
         }
         return newLeague
     }
@@ -250,9 +246,7 @@ class CoreDataContext {
             newTeam = team
             
         } else {
-            dispatch_async(dispatch_get_main_queue()) {
-                newTeam = Team(dictionary: dict, context: self.sharedContext)
-            }
+            newTeam = Team(dictionary: dict, context: self.sharedContext)
         }
         return newTeam
     }
@@ -265,14 +259,10 @@ class CoreDataContext {
         if let coach = self.getCoachByObjectId(objectId)
         {
             newCoach = coach
-            dispatch_async(dispatch_get_main_queue()) {
-                coach.updateObject(dict)
-            }
+            coach.updateObject(dict)
         } else {
             
-            dispatch_async(dispatch_get_main_queue()) {
-                newCoach = Coach(dictionary: dict, context: self.sharedContext)
-            }
+            newCoach = Coach(dictionary: dict, context: self.sharedContext)
         }
         return newCoach
     }
@@ -285,13 +275,9 @@ class CoreDataContext {
         if let game = self.getGameByObjectId(objectId)
         {
             newGame = game
-            dispatch_async(dispatch_get_main_queue()) {
-                game.updateObject(dict)
-            }
+            game.updateObject(dict)
         } else {
-            dispatch_async(dispatch_get_main_queue()) {
-                newGame = Game(dict: dict, context: self.sharedContext)
-            }
+            newGame = Game(dict: dict, context: self.sharedContext)
         }
         return newGame
     }

@@ -80,12 +80,12 @@ class EditGameViewController: UIViewController {
                 if canEdit {
                     submitButton.enabled = true
                     submitButton.hidden = false
-                    submitButton.titleLabel?.text = "Submit"
+                    submitButton.setTitle("Submit", forState: UIControlState.Normal)
                     statusMessage.text = "Update game score and click submit to save."
                 } else if canConfirm {
                     submitButton.enabled = true
                     submitButton.hidden = false
-                    submitButton.titleLabel?.text = "Confirm"
+                    submitButton.setTitle("Confirm", forState: UIControlState.Normal)
                     statusMessage.text = "Click Confirm to finalize game score. If there is a discrepancy, please contact the home team coach"
                 }
             } else {
@@ -127,10 +127,59 @@ class EditGameViewController: UIViewController {
         parseGame.setObject(homeTeamScore, forKey: "homeTeamScore")
         parseGame.setObject(awayTeamScore, forKey: "awayTeamScore")
         parseGame.setObject("complete", forKey: "status")
-        parseGame.saveInBackground()
+        
+        parseGame.saveInBackgroundWithBlock() { success, error in
+            if let _ = error {
+                let ac = UIAlertController(title: "Error", message: "Sorry there was an error saving. Please check your internet connection or try again later.", preferredStyle: .Alert)
+                ac.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                self.presentViewController(ac, animated: true, completion: nil)
+            } else {
+                if success {
+                    self.game?.homeTeamScore = homeTeamScore
+                    self.game?.awayTeamScore = awayTeamScore
+                    self.game?.status = "complete"
+                    let ac = UIAlertController(title: "Saved", message: "The game has been saved.", preferredStyle: .Alert)
+                    ac.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                    self.presentViewController(ac, animated: true, completion: nil)
+                    
+                } else {
+                    let ac = UIAlertController(title: "Error", message: "Sorry there was an error saving. Please check your internet connection or try again later.", preferredStyle: .Alert)
+                    ac.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                    self.presentViewController(ac, animated: true, completion: nil)
+                }
+            }
+            
+        }
     }
     
     func confirmGameScore() {
+        let parseGame = PFObject(withoutDataWithClassName: "Game", objectId: game?.objectId)
+        parseGame.setObject("confirmed", forKey: "status")
+        
+        parseGame.saveInBackgroundWithBlock() { success, error in
+            if let _ = error {
+                let ac = UIAlertController(title: "Error", message: "Sorry there was an error saving. Please check your internet connection or try again later.", preferredStyle: .Alert)
+                ac.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                self.presentViewController(ac, animated: true, completion: nil)
+            } else {
+                if success {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.game?.status = "confirmed"
+                        self.stackManager.saveContext()
+                    }
+                    let ac = UIAlertController(title: "Saved", message: "The game has been confirmed.", preferredStyle: .Alert)
+                    ac.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                    self.presentViewController(ac, animated: true, completion: nil)
+                } else {
+                    // parse save error
+                    let ac = UIAlertController(title: "Error", message: "Sorry there was an error saving. Please check your internet connection or try again later.", preferredStyle: .Alert)
+                    ac.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                    self.presentViewController(ac, animated: true, completion: nil)
+                }
+            }
+        }
+        
+        
 
     }
     

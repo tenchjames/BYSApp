@@ -111,7 +111,7 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.gamesWonLabel.text = "\(team.gamesWon)"
         cell.gamesLostLabel.text = "\(team.gamesLost)"
         cell.gamesTiedLabel.text = "\(team.gamesTied)"
-        cell.teamImageView.backgroundColor = team.getColor()
+        cell.teamLogoView.fillColor = team.getColor()
 
         return cell
     }

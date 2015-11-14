@@ -14,7 +14,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import ParseFacebookUtilsV4
 
-class LoginViewController: UIViewController,PFLogInViewControllerDelegate {
+class LoginViewController: UIViewController,PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
 
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -41,16 +41,16 @@ class LoginViewController: UIViewController,PFLogInViewControllerDelegate {
         } else {
             let logInController = BYSPFLoginViewController()
             logInController.delegate = self
+            let signUpController = BYSPFSignupViewController()
+            signUpController.delegate = self
+            logInController.signUpController = signUpController
             self.presentViewController(logInController, animated:true, completion: nil)
         }
-
     }
     
     func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        self.completeLogin()
+        self.dismissViewControllerAnimated(true, completion: completeLogin)
     }
-    
     
     func completeLogin() {
         dispatch_async(dispatch_get_main_queue()) {

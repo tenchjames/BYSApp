@@ -52,7 +52,6 @@ class LeagueScheduleViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("LeagueScheduleCell", forIndexPath: indexPath) as! ScheduleTableViewCell
-        
         cell.homeTeamLabel.text = games[indexPath.row].homeTeam?.teamName
         cell.awayTeamLabel.text = games[indexPath.row].awayTeam?.teamName
         cell.dateTimeLabel.text = datePlayedFormatter.stringFromDate(games[indexPath.row].currentlyScheduledDate)

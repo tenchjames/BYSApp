@@ -134,7 +134,7 @@ class LoadLeagueViewController: UIViewController, UITableViewDataSource, UITable
             if let error = error {
                 // check if any results...if some some other error happened mid request
                 print(error)
-                if let parseObjects = results {
+                if let _ = results {
                     print("some objects, but error")
                     // TODO: DO SOMETHING IN THIS CASE
                 }

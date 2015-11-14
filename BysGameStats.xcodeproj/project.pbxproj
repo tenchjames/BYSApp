@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		B70F1EC81BF02DF70079ECB1 /* BYSPFLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70F1EC71BF02DF70079ECB1 /* BYSPFLoginViewController.swift */; };
+		B70F1ECA1BF1750B0079ECB1 /* baseball_300.png in Resources */ = {isa = PBXBuildFile; fileRef = B70F1EC91BF1750B0079ECB1 /* baseball_300.png */; };
+		B70F1ECD1BF190BD0079ECB1 /* BYSPFSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70F1ECC1BF190BD0079ECB1 /* BYSPFSignupViewController.swift */; };
+		B70F1F401BF280710079ECB1 /* TeamLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70F1F3F1BF280710079ECB1 /* TeamLogoView.swift */; };
 		B719B2BE1BDAFD6C0044AF9D /* CreateLeagueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B2BD1BDAFD6C0044AF9D /* CreateLeagueViewController.swift */; };
 		B719B2C01BDB05220044AF9D /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B2BF1BDB05220044AF9D /* Helpers.swift */; };
 		B719B2C21BDBC09E0044AF9D /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B719B2C11BDBC09E0044AF9D /* TeamTableViewCell.swift */; };
@@ -60,6 +63,9 @@
 
 /* Begin PBXFileReference section */
 		B70F1EC71BF02DF70079ECB1 /* BYSPFLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BYSPFLoginViewController.swift; sourceTree = "<group>"; };
+		B70F1EC91BF1750B0079ECB1 /* baseball_300.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baseball_300.png; sourceTree = "<group>"; };
+		B70F1ECC1BF190BD0079ECB1 /* BYSPFSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BYSPFSignupViewController.swift; sourceTree = "<group>"; };
+		B70F1F3F1BF280710079ECB1 /* TeamLogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamLogoView.swift; sourceTree = "<group>"; };
 		B719B2BD1BDAFD6C0044AF9D /* CreateLeagueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateLeagueViewController.swift; sourceTree = "<group>"; };
 		B719B2BF1BDB05220044AF9D /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		B719B2C11BDBC09E0044AF9D /* TeamTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
@@ -142,6 +148,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B70F1ECB1BF175160079ECB1 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				B70F1EC91BF1750B0079ECB1 /* baseball_300.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		B719B2CB1BDDBEEC0044AF9D /* AdminControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +260,8 @@
 				B7A1829D1BE63A85007AD603 /* ScheduleTableViewCell.swift */,
 				B7A1829F1BE64540007AD603 /* VSRoundView.swift */,
 				B70F1EC71BF02DF70079ECB1 /* BYSPFLoginViewController.swift */,
+				B70F1ECC1BF190BD0079ECB1 /* BYSPFSignupViewController.swift */,
+				B70F1F3F1BF280710079ECB1 /* TeamLogoView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -266,6 +282,7 @@
 		B7E69D1D1BCB2469007DF0C0 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				B70F1ECB1BF175160079ECB1 /* images */,
 				B7E69D261BCBC830007DF0C0 /* Roboto-Medium.ttf */,
 				B7E69D271BCBC830007DF0C0 /* Roboto-Regular.ttf */,
 				B7E69D281BCBC830007DF0C0 /* Roboto-Thin.ttf */,
@@ -335,6 +352,7 @@
 				B772C0B01BC5ED4E00000ECF /* LaunchScreen.storyboard in Resources */,
 				B772C0AD1BC5ED4E00000ECF /* Assets.xcassets in Resources */,
 				B772C0A81BC5ED4E00000ECF /* Main.storyboard in Resources */,
+				B70F1ECA1BF1750B0079ECB1 /* baseball_300.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B70F1F401BF280710079ECB1 /* TeamLogoView.swift in Sources */,
 				B719B2C61BDD75D40044AF9D /* CreateGameViewController.swift in Sources */,
 				B719B2BE1BDAFD6C0044AF9D /* CreateLeagueViewController.swift in Sources */,
 				B73877351BD462620093FD93 /* ParseClient.swift in Sources */,
@@ -352,6 +371,7 @@
 				B7A182A21BE6460A007AD603 /* LeagueScheduleViewController.swift in Sources */,
 				B772C0A51BC5ED4D00000ECF /* LoginViewController.swift in Sources */,
 				B719B2C41BDBE8790044AF9D /* CreateCoachViewController.swift in Sources */,
+				B70F1ECD1BF190BD0079ECB1 /* BYSPFSignupViewController.swift in Sources */,
 				B7A562A61BEE622B006176CB /* EditGameViewController.swift in Sources */,
 				B77C192D1BD967AA0066F799 /* Coach.swift in Sources */,
 				B7803A5B1BE5909C004EA29D /* AdminButton.swift in Sources */,

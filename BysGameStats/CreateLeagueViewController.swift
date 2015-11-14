@@ -18,6 +18,7 @@ class CreateLeagueViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var commissionerEmail: UITextField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var yearTextField: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let parseClient = ParseClient.sharedInstance
     let coreDataContext = CoreDataContext.sharedInstance
@@ -32,13 +33,11 @@ class CreateLeagueViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         submitButton.enabled = false
-
-        // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        Helpers.hideActivityIndicator(activityIndicator)
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
@@ -57,8 +56,7 @@ class CreateLeagueViewController: UIViewController, UITextFieldDelegate {
             submitButton.enabled = false
         }
     }
-    
-    // TODO: with all error checking tell user what is wrong so they can fix
+
     func isValidForm() -> Bool {
         if !isValidLeagueName() {
             Helpers.setBorder(leagueName, isValid: false)
@@ -129,6 +127,7 @@ class CreateLeagueViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func submitNewLeague() {
+        Helpers.showActivityIndicator(activityIndicator)
         // text fields should have been validated. trim whitespace for database insert
         let year = yearTextField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         let league = leagueType.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
@@ -192,5 +191,6 @@ class CreateLeagueViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+        Helpers.hideActivityIndicator(activityIndicator)
     }
 }

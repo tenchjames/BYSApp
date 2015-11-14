@@ -41,4 +41,15 @@ class Helpers{
             textField.layer.borderColor = UIColor.clearColor().CGColor
         }
     }
+    
+    class func hideActivityIndicator(activityIndicator: UIActivityIndicatorView) {
+        activityIndicator.hidden = true
+        activityIndicator.stopAnimating()
+    }
+    
+    class func showActivityIndicator(activityIndicator: UIActivityIndicatorView) {
+        activityIndicator.hidden = false
+        activityIndicator.startAnimating()
+    }
+    
 }

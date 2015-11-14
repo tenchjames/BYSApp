@@ -18,6 +18,7 @@ class CreateCoachViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var leagueLabel: UILabel!
     @IBOutlet weak var teamLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let parseClient = ParseClient.sharedInstance
     let coreDataContext = CoreDataContext.sharedInstance
@@ -40,6 +41,11 @@ class CreateCoachViewController: UIViewController, UITextFieldDelegate {
         if let team = selectedTeam {
             teamLabel.text = team.teamName
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        Helpers.hideActivityIndicator(activityIndicator)
     }
 
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
@@ -92,12 +98,12 @@ class CreateCoachViewController: UIViewController, UITextFieldDelegate {
         return Helpers.isValidEmail(email)
     }
     
-    // TODO: regex to make really valid check
     func isValidCellPhone() -> Bool {
         return Helpers.isValidTextField(coachCellPhoneField.text)
     }
     
     @IBAction func submitNewCoach() {
+        Helpers.showActivityIndicator(activityIndicator)
         guard let selectedTeam = selectedTeam else {
             return
         }
@@ -109,11 +115,9 @@ class CreateCoachViewController: UIViewController, UITextFieldDelegate {
         guard var coachEmail = coachEmailField.text else {
             return
         }
-        
         guard var coachName = coachNameField.text else {
             return
         }
-        
         guard var coachCellPhone = coachNameField.text else {
             return
         }
@@ -183,5 +187,6 @@ class CreateCoachViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+        Helpers.hideActivityIndicator(activityIndicator)
     }
 }

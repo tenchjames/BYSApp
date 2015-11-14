@@ -18,6 +18,7 @@ class CreateTeamViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var teamName: UITextField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var leagueNameLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     
     var leagues = [League]()
@@ -41,23 +42,10 @@ class CreateTeamViewController: UIViewController, UITextFieldDelegate {
         }
         changeColor()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-    
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return leagues.count
-    }
-    
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return leagues[row].leagueName
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        Helpers.hideActivityIndicator(activityIndicator)
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
@@ -109,6 +97,7 @@ class CreateTeamViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func submitNewTeam() {
+        Helpers.showActivityIndicator(activityIndicator)
         // should be valid if submitting it passed validation tests
         guard let selectedLeague = selectedLeague else {
             return
@@ -168,6 +157,6 @@ class CreateTeamViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+        Helpers.hideActivityIndicator(activityIndicator)
     }
-
 }

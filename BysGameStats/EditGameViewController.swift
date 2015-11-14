@@ -19,6 +19,7 @@ class EditGameViewController: UIViewController {
     @IBOutlet weak var gameStatusLabel: UILabel!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var statusMessage: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     var game: Game?
     var coachType: String?
@@ -105,7 +106,13 @@ class EditGameViewController: UIViewController {
         }
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        Helpers.hideActivityIndicator(activityIndicator)
+    }
+    
     func updateGameScore() {
+        Helpers.showActivityIndicator(activityIndicator)
         guard let homeTeamScoreText = homeTeamScore.text else {
             // todo: print some error if empty
             return
@@ -148,11 +155,12 @@ class EditGameViewController: UIViewController {
                     self.presentViewController(ac, animated: true, completion: nil)
                 }
             }
-            
         }
+        Helpers.hideActivityIndicator(activityIndicator)
     }
     
     func confirmGameScore() {
+        Helpers.showActivityIndicator(activityIndicator)
         let parseGame = PFObject(withoutDataWithClassName: "Game", objectId: game?.objectId)
         parseGame.setObject("confirmed", forKey: "status")
         
@@ -178,9 +186,7 @@ class EditGameViewController: UIViewController {
                 }
             }
         }
-        
-        
-
+        Helpers.hideActivityIndicator(activityIndicator)
     }
     
     @IBAction func submitButtonTouchUp(sender: UIButton) {

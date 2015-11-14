@@ -20,11 +20,8 @@ class TeamLogoView: UIView {
         }
     }
     
-    
-    
-    
     override func drawRect(rect: CGRect) {
-        var path = UIBezierPath(ovalInRect: rect)
+        let path = UIBezierPath(ovalInRect: rect)
         fillColor.setFill()
         path.fill()
         
@@ -36,7 +33,7 @@ class TeamLogoView: UIView {
         let startAngle : CGFloat = 0
         let endAngle : CGFloat = 2 * pi
         
-        var outlinePath = UIBezierPath(arcCenter: center, radius: radius / 2 - archWidth / 2 - 1, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        let outlinePath = UIBezierPath(arcCenter: center, radius: radius / 2 - archWidth / 2 - 1, startAngle: startAngle, endAngle: endAngle, clockwise: true)
         
         outlinePath.lineWidth = archWidth
         outLineColor.setStroke()

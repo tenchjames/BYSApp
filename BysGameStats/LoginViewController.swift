@@ -48,16 +48,17 @@ class LoginViewController: UIViewController,PFLogInViewControllerDelegate, PFSig
         }
     }
     
+    
     func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
         self.dismissViewControllerAnimated(true, completion: completeLogin)
     }
+
     
     func completeLogin() {
         dispatch_async(dispatch_get_main_queue()) {
             let tabController = self.storyboard!.instantiateViewControllerWithIdentifier("LeagueRootController") as! UITabBarController
-            self.presentViewController(tabController, animated: true
-                , completion: nil)
-            
+            tabController.navigationItem.hidesBackButton = true
+            self.navigationController?.pushViewController(tabController, animated: true)
         }
     }
 }

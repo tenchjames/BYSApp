@@ -35,7 +35,7 @@ class LoadLeagueViewController: UIViewController, UITableViewDataSource, UITable
         return url.URLByAppendingPathComponent("bysGameStatsArchive").path!
     }
     
-    let defaultMinutesBeforeReload = 10.0
+    let defaultMinutesBeforeReload = 60.0
     
     var primaryLeague: League?
     var isInitialLoad = true
@@ -267,10 +267,11 @@ class LoadLeagueViewController: UIViewController, UITableViewDataSource, UITable
     
     // TODO: maybe present this view controller modally and do this differen
     func doneEditing() {
-        let tabController = self.presentingViewController as! UITabBarController
-        let navController = tabController.viewControllers?.first as! UINavigationController
-        let leaguesController = navController.viewControllers.first as! LeagueViewController
+        let navController = self.presentingViewController as! UINavigationController
+        let tabController = navController.viewControllers[navController.viewControllers.count - 1] as! UITabBarController
+        let leaguesController = tabController.viewControllers?.first as! LeagueViewController
         leaguesController.primaryLeague = self.primaryLeague
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 

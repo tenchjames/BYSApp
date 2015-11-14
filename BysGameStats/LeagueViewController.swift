@@ -42,6 +42,9 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let logoutButton = UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.Plain, target: self, action: "logOut")
+        self.parentViewController?.navigationItem.leftBarButtonItem = logoutButton
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "handleTripleTaps:")
         tapGestureRecognizer.numberOfTapsRequired = 3
         summaryView.addGestureRecognizer(tapGestureRecognizer)
@@ -59,11 +62,6 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             // if we don't have weather data do nothing silently don't show field
         }
-        guard let _ = self.primaryLeague else {
-            showLeagues(true)
-            return
-        }
-        
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -85,10 +83,17 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
             leagueNameLabel.text = primaryLeague.leagueName
             getTeamsByLeague(primaryLeague);
             // if the league changes, keep it in sync on the other tab for schedules
-            let navController = self.tabBarController?.viewControllers![1] as! UINavigationController
-            let scheduleTab = navController.topViewController as! LeagueScheduleViewController
+            let scheduleTab = self.tabBarController?.viewControllers![1] as! LeagueScheduleViewController
             scheduleTab.primaryLeague = self.primaryLeague
+        } else {
+            showLeagues(firstLoad)
+            firstLoad = false
         }
+    }
+    
+    func logOut() {
+        PFUser.logOut()
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     func handleTripleTaps(recognizer: UITapGestureRecognizer) {

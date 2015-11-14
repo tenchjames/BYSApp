@@ -37,7 +37,6 @@ struct ForecastClient {
                         
                         if let weatherDictionary = parsedResult as? [String: AnyObject] {
                             if let currentWeatherDictionary = weatherDictionary["currently"] as? [String: AnyObject] {
-                                print(currentWeatherDictionary)
                                 let currentWeather = CurrentWeather(weatherDictionary: currentWeatherDictionary)
                                 completion(currentWeather)
                             }

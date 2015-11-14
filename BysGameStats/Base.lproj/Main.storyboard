@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -55,8 +56,6 @@
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -68,41 +67,24 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="BackgroundView" customModule="BysGameStats" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brunswick" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dg7-3x-ypu">
-                                <rect key="frame" x="206" y="221" width="188" height="47"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="phz-Am-8df">
+                                <rect key="frame" x="0.0" y="28" width="600" height="300"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="40"/>
-                                <color key="textColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Youth" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f95-L5-u5O">
-                                <rect key="frame" x="247" y="276" width="106" height="47"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="40"/>
-                                <color key="textColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sports" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5k-HK-ITP">
-                                <rect key="frame" x="241" y="331" width="119" height="47"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="40"/>
-                                <color key="textColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="phz-Am-8df" secondAttribute="height" multiplier="2:1" id="R1V-Sq-9Il"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.050980392159999999" green="0.050980392159999999" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="f95-L5-u5O" firstAttribute="top" secondItem="dg7-3x-ypu" secondAttribute="bottom" constant="8" id="Dh0-L1-Z93"/>
-                            <constraint firstItem="J5k-HK-ITP" firstAttribute="top" secondItem="f95-L5-u5O" secondAttribute="bottom" constant="8" id="JNE-qH-RUB"/>
-                            <constraint firstItem="f95-L5-u5O" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NqQ-dI-rtN"/>
-                            <constraint firstItem="dg7-3x-ypu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TP5-Cf-YqQ"/>
-                            <constraint firstItem="J5k-HK-ITP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sG5-7d-zDY"/>
-                            <constraint firstItem="f95-L5-u5O" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wob-Ww-px5"/>
+                            <constraint firstAttribute="trailing" secondItem="phz-Am-8df" secondAttribute="trailing" id="Ab7-Mq-Dnc"/>
+                            <constraint firstItem="phz-Am-8df" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="FsS-4b-I0I"/>
+                            <constraint firstItem="phz-Am-8df" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="U38-ia-Kcr"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -1016,14 +998,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="166"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click Leagues button to choose" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVw-5E-iFG">
-                                        <rect key="frame" x="8" y="64" width="584" height="29"/>
+                                        <rect key="frame" x="8" y="64" width="584" height="28.5"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="24"/>
                                         <color key="textColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wg6-9V-bnY" customClass="AdminButton" customModule="BysGameStats" customModuleProvider="target">
-                                        <rect key="frame" x="548" y="100" width="44" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wg6-9V-bnY" customClass="AdminButton" customModule="BysGameStats" customModuleProvider="target">
+                                        <rect key="frame" x="548" y="99" width="44" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                         <state key="normal" title="Admin"/>
@@ -1092,12 +1074,21 @@
                                             </mask>
                                         </variation>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather Summary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WMn-4F-urM">
+                                        <rect key="frame" x="8" y="113.5" width="116" height="16.5"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                        <color key="textColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.3411764706" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="WMn-4F-urM" firstAttribute="leading" secondItem="nkQ-6O-buG" secondAttribute="leading" constant="8" id="E2f-Ya-77k"/>
                                     <constraint firstItem="Wg6-9V-bnY" firstAttribute="top" secondItem="dVw-5E-iFG" secondAttribute="bottom" constant="7.5" id="EqS-1S-2vv"/>
                                     <constraint firstItem="dVw-5E-iFG" firstAttribute="leading" secondItem="nkQ-6O-buG" secondAttribute="leading" constant="8" id="F0c-mt-2Qg"/>
+                                    <constraint firstItem="MXf-Ba-5TX" firstAttribute="top" secondItem="WMn-4F-urM" secondAttribute="bottom" constant="8" id="Iv8-98-skm"/>
                                     <constraint firstAttribute="trailing" secondItem="MXf-Ba-5TX" secondAttribute="trailing" id="MRc-22-BVp"/>
                                     <constraint firstAttribute="trailing" secondItem="Wg6-9V-bnY" secondAttribute="trailing" constant="8" id="WEU-CP-C2h"/>
                                     <constraint firstAttribute="trailing" secondItem="dVw-5E-iFG" secondAttribute="trailing" constant="8" id="aBl-1E-JSF"/>
@@ -1254,6 +1245,7 @@
                         <outlet property="leagueSelectButton" destination="uFe-Vy-FVB" id="gz4-KM-q7b"/>
                         <outlet property="summaryView" destination="nkQ-6O-buG" id="cmx-0d-Kgi"/>
                         <outlet property="tableView" destination="uor-Qi-xG7" id="xh8-iB-VxF"/>
+                        <outlet property="weatherSummary" destination="WMn-4F-urM" id="CMZ-pO-49p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rxR-yy-OmZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1723,4 +1715,7 @@
             <point key="canvasLocation" x="1627" y="1149"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo" width="300" height="147"/>
+    </resources>
 </document>

@@ -16,6 +16,7 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var adminButton: AdminButton!
     @IBOutlet weak var summaryView: UIView!
     @IBOutlet weak var leagueSelectButton: UIBarButtonItem!
+    @IBOutlet weak var weatherSummary: UILabel!
 
     // todo add transparent image logos that can be used per team
     var primaryLeague: League?
@@ -24,6 +25,9 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // variable to stop screen swapping look...just hide stuff until loaded first time
     // app is called
     var firstLoad = true
+    
+    // brunswick location - future can allow for other locations
+    let coordinate: (lat: Double, long: Double) = (41.2442,-81.8283)
     
     let coreDataContext = CoreDataContext.sharedInstance
     var sharedContext: NSManagedObjectContext {
@@ -43,10 +47,23 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
         summaryView.addGestureRecognizer(tapGestureRecognizer)
         adminButton.enabled = false
         adminButton.hidden = true
+        let forecast = ForecastClient()
+        forecast.getForecast(coordinate.lat, long: coordinate.long) { weather in
+            if let currentWeather = weather {
+                if let summary = currentWeather.summary,
+                    precip = currentWeather.precipProbability {
+                       self.weatherSummary.text = "\(summary) : Rain % \(precip)"
+                }
+            } else {
+                self.weatherSummary.hidden = true
+            }
+            // if we don't have weather data do nothing silently don't show field
+        }
         guard let _ = self.primaryLeague else {
             showLeagues(true)
             return
         }
+        
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)

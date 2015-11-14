@@ -21,9 +21,9 @@ class BYSPFLoginViewController: PFLogInViewController {
     
     override func viewDidLayoutSubviews() {
         if let logInView = self.logInView {
-            let xPosition = (logInView.frame.width - 150) / 2.0
+            let xPosition = CGFloat(0.0)
             if let logo = logInView.logo {
-                logo.frame = CGRectMake(xPosition, 80.0, 150, 146)
+                logo.frame = CGRectMake(xPosition, 60.0, logInView.frame.width, logInView.frame.width / 2.0)
             }
         }
     }

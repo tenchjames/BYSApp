@@ -52,6 +52,8 @@
 		B7A562A61BEE622B006176CB /* EditGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A562A51BEE622B006176CB /* EditGameViewController.swift */; };
 		B7AB60921BD86339001B46CF /* CreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AB60911BD86339001B46CF /* CreateTeamViewController.swift */; };
 		B7AB60941BD86555001B46CF /* LeagueAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AB60931BD86555001B46CF /* LeagueAdminViewController.swift */; };
+		B7B575401BF6CA550081ECBC /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B5753F1BF6CA550081ECBC /* CurrentWeather.swift */; };
+		B7B575421BF7CD950081ECBC /* ForecastClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B575411BF7CD950081ECBC /* ForecastClient.swift */; };
 		B7E69D1F1BCB289A007DF0C0 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E69D1E1BCB289A007DF0C0 /* ParseUI.framework */; };
 		B7E69D251BCB3AE8007DF0C0 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E69D241BCB3AE8007DF0C0 /* BackgroundView.swift */; };
 		B7E69D2A1BCBC9C9007DF0C0 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E69D291BCBC9C9007DF0C0 /* FBSDKLoginKit.framework */; };
@@ -109,6 +111,8 @@
 		B7A562A51BEE622B006176CB /* EditGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGameViewController.swift; sourceTree = "<group>"; };
 		B7AB60911BD86339001B46CF /* CreateTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTeamViewController.swift; sourceTree = "<group>"; };
 		B7AB60931BD86555001B46CF /* LeagueAdminViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueAdminViewController.swift; sourceTree = "<group>"; };
+		B7B5753F1BF6CA550081ECBC /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
+		B7B575411BF7CD950081ECBC /* ForecastClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastClient.swift; sourceTree = "<group>"; };
 		B7E69D1E1BCB289A007DF0C0 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		B7E69D241BCB3AE8007DF0C0 /* BackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		B7E69D261BCBC830007DF0C0 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 			children = (
 				B73877341BD462620093FD93 /* ParseClient.swift */,
 				B73877361BD465A00093FD93 /* CoreDataContext.swift */,
+				B7B575411BF7CD950081ECBC /* ForecastClient.swift */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				B73877311BD460EA0093FD93 /* Team.swift */,
 				B77C192C1BD967AA0066F799 /* Coach.swift */,
 				B778BFBE1BE12B2E00F7EAA8 /* Game.swift */,
+				B7B5753F1BF6CA550081ECBC /* CurrentWeather.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -371,6 +377,7 @@
 				B7A182A21BE6460A007AD603 /* LeagueScheduleViewController.swift in Sources */,
 				B772C0A51BC5ED4D00000ECF /* LoginViewController.swift in Sources */,
 				B719B2C41BDBE8790044AF9D /* CreateCoachViewController.swift in Sources */,
+				B7B575401BF6CA550081ECBC /* CurrentWeather.swift in Sources */,
 				B70F1ECD1BF190BD0079ECB1 /* BYSPFSignupViewController.swift in Sources */,
 				B7A562A61BEE622B006176CB /* EditGameViewController.swift in Sources */,
 				B77C192D1BD967AA0066F799 /* Coach.swift in Sources */,
@@ -383,6 +390,7 @@
 				B73877301BD4505C0093FD93 /* LeagueViewController.swift in Sources */,
 				B7A182A01BE64540007AD603 /* VSRoundView.swift in Sources */,
 				B7A1829E1BE63A85007AD603 /* ScheduleTableViewCell.swift in Sources */,
+				B7B575421BF7CD950081ECBC /* ForecastClient.swift in Sources */,
 				B73877321BD460EA0093FD93 /* Team.swift in Sources */,
 				B73877371BD465A00093FD93 /* CoreDataContext.swift in Sources */,
 				B7E69D301BD1DB39007DF0C0 /* League.swift in Sources */,

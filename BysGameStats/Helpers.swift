@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class Helpers{
-
     
     class func isValidEmail(email: String) -> Bool {
         let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: NSRegularExpressionOptions.CaseInsensitive)
@@ -50,6 +49,19 @@ class Helpers{
     class func showActivityIndicator(activityIndicator: UIActivityIndicatorView) {
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
+    }
+    
+    class func getLeaguePreference() -> [String: AnyObject]? {
+        var filePath : String {
+            let manager = NSFileManager.defaultManager()
+            let url = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first! as NSURL
+            return url.URLByAppendingPathComponent("bysGameStatsArchive").path!
+        }
+        
+        if let leaguePreferences = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [String : AnyObject] {
+            return leaguePreferences
+        }
+        return nil
     }
     
 }

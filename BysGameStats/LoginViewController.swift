@@ -47,19 +47,25 @@ class LoginViewController: UIViewController,PFLogInViewControllerDelegate, PFSig
             self.presentViewController(logInController, animated:true, completion: nil)
         }
     }
-    
-    
+
     func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
         self.dismissViewControllerAnimated(true, completion: completeLogin)
     }
 
-    
     func completeLogin() {
         dispatch_async(dispatch_get_main_queue()) {
             let tabController = self.storyboard!.instantiateViewControllerWithIdentifier("LeagueRootController") as! UITabBarController
             tabController.navigationItem.hidesBackButton = true
+            if let leaguePreference = Helpers.getLeaguePreference() {
+                if let savedLeagueId = leaguePreference["primaryLeague"] as? String {
+                    // get the league out of core data
+                    if let savedLeague = CoreDataContext.sharedInstance.getLeagueIdByObjectId(savedLeagueId) {
+                        let leagueController = tabController.viewControllers?.first as! LeagueViewController
+                        leagueController.primaryLeague = savedLeague
+                    }
+                }
+            }
             self.navigationController?.pushViewController(tabController, animated: true)
         }
     }
 }
-

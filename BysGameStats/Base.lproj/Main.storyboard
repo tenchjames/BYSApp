@@ -1267,7 +1267,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fcx-8m-hY7">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="49" width="600" height="502"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1368,7 +1368,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Fcx-8m-hY7" firstAttribute="top" secondItem="0yA-9h-XpY" secondAttribute="top" id="6Uc-5f-0Ch"/>
+                            <constraint firstItem="Fcx-8m-hY7" firstAttribute="top" secondItem="0yA-9h-XpY" secondAttribute="top" constant="49" id="6Uc-5f-0Ch"/>
                             <constraint firstItem="Fcx-8m-hY7" firstAttribute="leading" secondItem="0yA-9h-XpY" secondAttribute="leading" id="QRr-DR-pKU"/>
                             <constraint firstAttribute="trailing" secondItem="Fcx-8m-hY7" secondAttribute="trailing" id="RdA-2l-etU"/>
                             <constraint firstItem="SvE-nj-TnB" firstAttribute="top" secondItem="Fcx-8m-hY7" secondAttribute="bottom" id="ozU-1v-Q7g"/>

@@ -37,6 +37,14 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var stackManager: CoreDataStackManager {
         return CoreDataStackManager.sharedInstance()
     }
+    
+    var filePath : String {
+        let manager = NSFileManager.defaultManager()
+        let url = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first! as NSURL
+        return url.URLByAppendingPathComponent("bysGameStatsArchive").path!
+    }
+    
+    let defaultMinutesBeforeReload = 60.0
 
     var tapGestureRecognizer: UITapGestureRecognizer!
 
@@ -45,6 +53,10 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let logoutButton = UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.Plain, target: self, action: "logOut")
         self.parentViewController?.navigationItem.leftBarButtonItem = logoutButton
+        let leaguesButton = UIBarButtonItem(title: "Leagues", style: .Plain, target: self, action: "showLeagues")
+        self.parentViewController?.navigationItem.rightBarButtonItem = leaguesButton
+        
+        
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "handleTripleTaps:")
         tapGestureRecognizer.numberOfTapsRequired = 3
         summaryView.addGestureRecognizer(tapGestureRecognizer)
@@ -63,31 +75,39 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
             // if we don't have weather data do nothing silently don't show field
         }
     }
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        if firstLoad {
-            firstLoad = false
-            tableView.hidden = true
-            summaryView.hidden = true
-        } else {
-            tableView.hidden = false
-            summaryView.hidden = false
-        }
-    }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
         // if a primary league is selected, show the details
         // else prompt the user to pick their primary league from a list
         if let primaryLeague = self.primaryLeague {
+            var coreDataNeedsRefreshed = false
+            if let leaguePreference = getLeaguePreference() {
+                // if the league has not been loaded in x amount of time (need to decide / test)
+                // then call parse and reload the data
+                // else, the data has been loaded for the app and can be used based off coredata
+                if let lastUpdateTime = leaguePreference["lastUpdateTime"] as? NSDate {
+                    let timeDifference = NSDate().timeIntervalSinceDate(lastUpdateTime)
+                    let minutes = timeDifference / 60
+                    if minutes > defaultMinutesBeforeReload {
+                        coreDataNeedsRefreshed = true
+                    }
+                }
+            }
+            
+            if coreDataNeedsRefreshed {
+                getLeague(primaryLeague)
+            }
+
             leagueNameLabel.text = primaryLeague.leagueName
             getTeamsByLeague(primaryLeague);
             // if the league changes, keep it in sync on the other tab for schedules
             let scheduleTab = self.tabBarController?.viewControllers![1] as! LeagueScheduleViewController
             scheduleTab.primaryLeague = self.primaryLeague
         } else {
-            showLeagues(firstLoad)
-            firstLoad = false
+            showLeagues()
+            //firstLoad = false
         }
     }
     
@@ -146,10 +166,164 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.navigationController?.pushViewController(destinationViewController, animated: true)
     }
     
-    @IBAction func showLeagues(isInitialLoad: Bool) {
+    @IBAction func showLeagues() {
         let leagueSelectionController = self.storyboard!.instantiateViewControllerWithIdentifier("LoadLeagueViewController") as! LoadLeagueViewController
-        leagueSelectionController.isInitialLoad = isInitialLoad
         self.presentViewController(leagueSelectionController, animated: true, completion: nil)
         
+    }
+    
+    func getLeaguePreference() -> [String: AnyObject]? {
+        if let leaguePreferences = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [String : AnyObject] {
+            return leaguePreferences
+        }
+        return nil
+    }
+    
+    func getLeague(league: League) {
+        // they have a choice, but it is old...query parse
+        queryParseToLoadData(league) { success, error in
+            if success {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.tableView.reloadData()
+                }
+            }
+            // otherwise just let function return and display the current selection page
+            // todo: if error report it
+        }
+    }
+    
+    func queryParseToLoadData(league: League, completionHandler: (success: Bool, error: NSError?)->Void) {
+        parseClient.getAllLeagueObjectsByLeagueId(league) { results, error in
+            if let error = error {
+                // check if any results...if some some other error happened mid request
+                print(error)
+                if let _ = results {
+                    print("some objects, but error")
+                    // TODO: DO SOMETHING IN THIS CASE
+                }
+                completionHandler(success: false, error: error)
+            } else {
+                if let parseObjects = results {
+                    self.saveParseToCoreData(parseObjects, completionHandler: completionHandler)
+                }
+            }
+        }
+    }
+    
+    func saveParseToCoreData(parseObjects: [PFObject], completionHandler: (success: Bool, error: NSError?)->Void) {
+        // objects were retrieved in hierarchy order
+        // league, then teams, then games and coaches
+        // keep track of league and teams so we don't keep reloading
+        // them in coredata
+        var league: League?
+        var teams = [Team]()
+        var games = [Game]()
+        
+        for parse in parseObjects {
+            guard let _ = parse.objectId else {
+                continue;
+            }
+            
+            let parseClass = parse.parseClassName
+            switch parseClass {
+            case "League":
+                guard let dict = parseClient.leagueAttributes(parse) else {
+                    continue
+                }
+                league = coreDataContext.leagueFromDictionary(dict)
+            case "Team":
+                guard var dict = parseClient.teamAttributes(parse) else {
+                    continue
+                }
+                if let setLeague = league {
+                    dict["league"] = setLeague
+                }
+                dict["gamesWon"] = 0
+                dict["gamesLost"] = 0
+                dict["gamesTied"] = 0
+                
+                if let newTeam = coreDataContext.teamFromDictionary(dict) {
+                    teams.append(newTeam)
+                }
+                
+            case "Game":
+                guard var dict = parseClient.gameAttributes(parse) else {
+                    continue
+                }
+                if let setLeague = league {
+                    dict["league"] = setLeague
+                }
+                if let awayTeamPointer = parse["awayTeamPointer"].objectId {
+                    for team in teams {
+                        if team.objectId == awayTeamPointer {
+                            dict["awayTeam"] = team
+                            break
+                        }
+                    }
+                }
+                if let homeTeamPointer = parse["homeTeamPointer"].objectId {
+                    for team in teams {
+                        if team.objectId == homeTeamPointer {
+                            dict["homeTeam"] = team
+                            break
+                        }
+                    }
+                }
+                if let newGame = coreDataContext.gameFromDictionary(dict) {
+                    games.append(newGame)
+                }
+            case "Coach":
+                guard var dict = parseClient.coachAttributes(parse) else {
+                    continue
+                }
+                if let setLeague = league {
+                    dict["league"] = setLeague
+                }
+                if let teamCoaching = parse["teamCoaching"].objectId {
+                    for team in teams {
+                        if team.objectId == teamCoaching {
+                            dict["teamCoaching"] = team
+                            break
+                        }
+                    }
+                }
+                let _ = coreDataContext.coachFromDictionary(dict)
+            default:
+                continue;
+            }
+        }
+        
+        // after all the objects have been loaded, loop over the games
+        // to set team wins and losses
+        dispatch_async(dispatch_get_main_queue()) {
+            for game in games {
+                if game.status == "complete" || game.status == "confirmed" {
+                    if game.homeTeamScore > game.awayTeamScore {
+                        if let homeTeam = game.homeTeam {
+                            homeTeam.gamesWon += 1
+                        }
+                        if let awayTeam = game.awayTeam {
+                            awayTeam.gamesLost += 1
+                        }
+                    } else if game.awayTeamScore > game.homeTeamScore {
+                        if let homeTeam = game.homeTeam {
+                            homeTeam.gamesLost += 1
+                        }
+                        if let awayTeam = game.awayTeam {
+                            awayTeam.gamesWon += 1
+                        }
+                    } else {
+                        if let homeTeam = game.homeTeam {
+                            homeTeam.gamesTied += 1
+                        }
+                        if let awayTeam = game.awayTeam {
+                            awayTeam.gamesTied += 1
+                        }
+                    }
+                }
+            }
+            self.stackManager.saveContext()
+            completionHandler(success: true, error: nil)
+        }
     }
 }

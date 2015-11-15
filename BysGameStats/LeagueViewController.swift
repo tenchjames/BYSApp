@@ -22,9 +22,6 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var primaryLeague: League?
     var teams: [Team] = [Team]()
     let parseClient = ParseClient.sharedInstance
-    // variable to stop screen swapping look...just hide stuff until loaded first time
-    // app is called
-    var firstLoad = true
     
     // brunswick location - future can allow for other locations
     let coordinate: (lat: Double, long: Double) = (41.2442,-81.8283)
@@ -55,8 +52,7 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.parentViewController?.navigationItem.leftBarButtonItem = logoutButton
         let leaguesButton = UIBarButtonItem(title: "Leagues", style: .Plain, target: self, action: "showLeagues")
         self.parentViewController?.navigationItem.rightBarButtonItem = leaguesButton
-        
-        
+
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "handleTripleTaps:")
         tapGestureRecognizer.numberOfTapsRequired = 3
         summaryView.addGestureRecognizer(tapGestureRecognizer)
@@ -94,10 +90,20 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         coreDataNeedsRefreshed = true
                     }
                 }
+            } else {
+                coreDataNeedsRefreshed = true
             }
             
             if coreDataNeedsRefreshed {
-                getLeague(primaryLeague)
+                queryParseToLoadData(primaryLeague) { success, error in
+                    if success {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.getTeamsByLeague(primaryLeague)
+                            self.saveLeaguePreference()
+                        }
+                    }
+                    // if no update??? error to user?
+                }
             }
 
             leagueNameLabel.text = primaryLeague.leagueName
@@ -107,7 +113,6 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
             scheduleTab.primaryLeague = self.primaryLeague
         } else {
             showLeagues()
-            //firstLoad = false
         }
     }
     
@@ -160,7 +165,6 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let destinationViewController = storyboard?.instantiateViewControllerWithIdentifier("TeamViewController") as! TeamViewController
-        
         destinationViewController.team = teams[indexPath.row]
         destinationViewController.league = primaryLeague
         self.navigationController?.pushViewController(destinationViewController, animated: true)
@@ -168,8 +172,7 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func showLeagues() {
         let leagueSelectionController = self.storyboard!.instantiateViewControllerWithIdentifier("LoadLeagueViewController") as! LoadLeagueViewController
-        self.presentViewController(leagueSelectionController, animated: true, completion: nil)
-        
+        self.tabBarController?.presentViewController(leagueSelectionController, animated: true, completion: nil)
     }
     
     func getLeaguePreference() -> [String: AnyObject]? {
@@ -177,19 +180,6 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return leaguePreferences
         }
         return nil
-    }
-    
-    func getLeague(league: League) {
-        // they have a choice, but it is old...query parse
-        queryParseToLoadData(league) { success, error in
-            if success {
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.tableView.reloadData()
-                }
-            }
-            // otherwise just let function return and display the current selection page
-            // todo: if error report it
-        }
     }
     
     func queryParseToLoadData(league: League, completionHandler: (success: Bool, error: NSError?)->Void) {
@@ -326,4 +316,20 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
             completionHandler(success: true, error: nil)
         }
     }
+    
+    
+    
+    func saveLeaguePreference() {
+        var dictionary = [String: AnyObject]()
+        if let selectedLeague = primaryLeague {
+            dictionary["primaryLeague"] = selectedLeague.objectId
+        } else {
+            dictionary["primaryLeague"] = nil
+        }
+        dictionary["lastUpdateTime"] = NSDate()
+        
+        // Archive the dictionary into the filePath
+        NSKeyedArchiver.archiveRootObject(dictionary, toFile: filePath)
+    }
+    
 }

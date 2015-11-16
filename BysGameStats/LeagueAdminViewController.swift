@@ -84,11 +84,6 @@ class LeagueAdminViewController: UIViewController, UITableViewDataSource, UITabl
             controller = self.storyboard!.instantiateViewControllerWithIdentifier("SelectLeagueViewController") as! SelectLeagueViewController
             controller.exitAction = "Game"
             self.navigationController?.pushViewController(controller, animated: true)
-            
-//            var controller : CreateGameViewController
-//            controller = self.storyboard!.instantiateViewControllerWithIdentifier("CreateGameViewController") as! CreateGameViewController
-//            //controller.exitAction = "Game"
-//            self.navigationController?.pushViewController(controller, animated: true)
         }
     }
 

@@ -56,6 +56,11 @@ class CreateTeamViewController: UIViewController, UITextFieldDelegate {
         validateForm()
         return false
     }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 
     @IBAction func changeColor() {
         let r: CGFloat = CGFloat(redSlider.value / 255.0)

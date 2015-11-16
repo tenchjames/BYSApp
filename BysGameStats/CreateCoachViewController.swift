@@ -57,6 +57,11 @@ class CreateCoachViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     func validateForm() {
         if isValidForm() {
             submitButton.enabled = true

@@ -22,8 +22,16 @@ class BYSPFLoginViewController: PFLogInViewController {
     override func viewDidLayoutSubviews() {
         if let logInView = self.logInView {
             let xPosition = CGFloat(0.0)
+            let width = logInView.frame.width
+            let height = logInView.frame.width / 2
             if let logo = logInView.logo {
                 logo.frame = CGRectMake(xPosition, 60.0, logInView.frame.width, logInView.frame.width / 2.0)
+            }
+            if let username = logInView.usernameField {
+                username.frame = CGRectMake(xPosition, height + 60, width, 40.0)
+            }
+            if let pword = logInView.passwordField {
+                pword.frame = CGRectMake(xPosition, height + 100, width, 40.0)
             }
         }
     }

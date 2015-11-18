@@ -42,6 +42,7 @@ class LoadLeagueViewController: UIViewController, UITableViewDataSource, UITable
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadingView.hidden = false
         parseClient.getLeagues() { result, error in
             if let _ = error {
                 let ac = UIAlertController(title: "Error", message: "Sorry there was an error getting leagues", preferredStyle: .Alert)
@@ -55,6 +56,7 @@ class LoadLeagueViewController: UIViewController, UITableViewDataSource, UITable
                         }
                     }
                     self.tableView.reloadData()
+                    self.loadingView.hidden = true
                 }
             }
         }

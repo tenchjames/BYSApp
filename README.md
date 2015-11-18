@@ -42,7 +42,7 @@ password: password
 **added this role to version 2. The admin role is in charge of creating leagues.
 
 In addition, testing can be done by setting up any new account or by logging in with facebook.
-
+**version 2 fixed missing facebook login. users can now log in with facebook.
 
 ### App usage
 #### Login view

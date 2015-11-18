@@ -11,13 +11,15 @@ import Parse
 
 class LeagueAdminViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var adminOptions = [String]()
     var userRoles = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        Helpers.showActivityIndicator(activityIndicator)
+        tableView.hidden = true
         if let user = PFUser.currentUser() {
             
             let query = PFRole.query()
@@ -37,17 +39,14 @@ class LeagueAdminViewController: UIViewController, UITableViewDataSource, UITabl
                     self.adminOptions.append("Create New Team")
                     self.adminOptions.append("Create New Coach")
                     self.adminOptions.append("Create New Game")
-                    self.tableView.reloadData()
                 }
-                
+                Helpers.hideActivityIndicator(self.activityIndicator)
+                self.tableView.reloadData()
+                self.tableView.hidden = false
             }
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return adminOptions.count

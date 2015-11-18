@@ -12,7 +12,7 @@ import Parse
 
 class League : NSManagedObject {
     @NSManaged var objectId: String
-    @NSManaged var year: NSNumber
+    @NSManaged var year: Int
     @NSManaged var updatedAt: NSDate
     @NSManaged var commissionerEmail: String
     @NSManaged var leagueType: String

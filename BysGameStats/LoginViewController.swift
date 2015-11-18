@@ -44,6 +44,8 @@ class LoginViewController: UIViewController,PFLogInViewControllerDelegate, PFSig
             let signUpController = BYSPFSignupViewController()
             signUpController.delegate = self
             logInController.signUpController = signUpController
+            logInController.facebookPermissions = ["public_profile"]
+            logInController.fields = [PFLogInFields.UsernameAndPassword, PFLogInFields.Facebook, PFLogInFields.SignUpButton, PFLogInFields.LogInButton]
             self.presentViewController(logInController, animated:true, completion: nil)
         }
     }

@@ -43,7 +43,7 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     let defaultMinutesBeforeReload = 60.0
 
-    var tapGestureRecognizer: UITapGestureRecognizer!
+    //var tapGestureRecognizer: UITapGestureRecognizer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,11 +53,34 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let leaguesButton = UIBarButtonItem(title: "Leagues", style: .Plain, target: self, action: "showLeagues")
         self.parentViewController?.navigationItem.rightBarButtonItem = leaguesButton
 
+        /* removed this based on feedback, however was originaly put in this way 
+        * to limit parse requests, if app has too many request can add this to limit
+        * instead of checking user role each time (and making 2 api calls)
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "handleTripleTaps:")
         tapGestureRecognizer.numberOfTapsRequired = 3
         summaryView.addGestureRecognizer(tapGestureRecognizer)
+        */
         adminButton.enabled = false
         adminButton.hidden = true
+        if let currentUser = PFUser.currentUser() {
+            let roleQuery = PFQuery(className: "_Role")
+            roleQuery.whereKey("users", equalTo: currentUser)
+            roleQuery.findObjectsInBackgroundWithBlock() { result, error in
+                if let roles = result as? [PFRole] {
+                    var isOk = false
+                    for role in roles {
+                        if role.name == "admin" || role.name == "commissioner" {
+                            isOk = true;
+                        }
+                    }
+                    if isOk {
+                        self.adminButton.enabled = true
+                        self.adminButton.hidden = false
+                    }
+                }
+            }
+        }
+       
         let forecast = ForecastClient()
         forecast.getForecast(coordinate.lat, long: coordinate.long) { weather in
             if let currentWeather = weather {
@@ -121,10 +144,11 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
-    func handleTripleTaps(recognizer: UITapGestureRecognizer) {
-        adminButton.enabled = !adminButton.enabled
-        adminButton.hidden = !adminButton.hidden
-    }
+    // removed based on feedback. add back if too many parse calls for free tier
+//    func handleTripleTaps(recognizer: UITapGestureRecognizer) {
+//        adminButton.enabled = !adminButton.enabled
+//        adminButton.hidden = !adminButton.hidden
+//    }
     
     func getTeamsByLeague(league: League) {
         if let teamArray = coreDataContext.getTeamsByLeague(league) {
@@ -172,6 +196,7 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func showLeagues() {
         let leagueSelectionController = self.storyboard!.instantiateViewControllerWithIdentifier("LoadLeagueViewController") as! LoadLeagueViewController
+        leagueSelectionController.primaryLeague = self.primaryLeague
         self.tabBarController?.presentViewController(leagueSelectionController, animated: true, completion: nil)
     }
     
@@ -317,8 +342,6 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    
-    
     func saveLeaguePreference() {
         var dictionary = [String: AnyObject]()
         if let selectedLeague = primaryLeague {
@@ -331,5 +354,4 @@ class LeagueViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Archive the dictionary into the filePath
         NSKeyedArchiver.archiveRootObject(dictionary, toFile: filePath)
     }
-    
 }

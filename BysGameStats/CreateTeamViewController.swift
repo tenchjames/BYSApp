@@ -19,7 +19,7 @@ class CreateTeamViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var leagueNameLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+    var tapRecognizer: UITapGestureRecognizer? = nil
     
     var leagues = [League]()
     var selectedLeague : League?
@@ -40,12 +40,44 @@ class CreateTeamViewController: UIViewController, UITextFieldDelegate {
         if let selectedLeague = self.selectedLeague {
             leagueNameLabel.text = selectedLeague.leagueName
         }
+        tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
+        tapRecognizer?.numberOfTapsRequired = 1
         changeColor()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         Helpers.hideActivityIndicator(activityIndicator)
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        self.addKeyboardDismissRecognizer()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.removeKeyboardDismissRecognizer()
+    }
+    
+    // MARK: - Keyboard Fixes
+    func addKeyboardDismissRecognizer() {
+        self.view.addGestureRecognizer(tapRecognizer!)
+    }
+    
+    func removeKeyboardDismissRecognizer() {
+        self.view.removeGestureRecognizer(tapRecognizer!)
+    }
+    
+    func handleSingleTap(recognizer: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {

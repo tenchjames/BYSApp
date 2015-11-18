@@ -13,6 +13,7 @@ class LeagueAdminViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    
     var adminOptions = [String]()
     var userRoles = [String]()
 

@@ -16,6 +16,7 @@ class CreateGameViewController: UIViewController, UITableViewDataSource, UITable
     var selectedLeague: League?
     var dateScheduled : NSDate?
     let reuseIdentifier = "PickTeamCell"
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var submitButton: UIButton!
@@ -31,8 +32,6 @@ class CreateGameViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -51,7 +50,6 @@ class CreateGameViewController: UIViewController, UITableViewDataSource, UITable
         tableView.reloadData()
     }
     
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
@@ -60,7 +58,6 @@ class CreateGameViewController: UIViewController, UITableViewDataSource, UITable
         return 1
     }
 
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
         cell.textLabel?.text = teamNames[indexPath.section]

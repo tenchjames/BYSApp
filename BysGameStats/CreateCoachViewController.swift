@@ -19,6 +19,7 @@ class CreateCoachViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var leagueLabel: UILabel!
     @IBOutlet weak var teamLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    var tapRecognizer: UITapGestureRecognizer? = nil
     
     let parseClient = ParseClient.sharedInstance
     let coreDataContext = CoreDataContext.sharedInstance
@@ -41,11 +42,36 @@ class CreateCoachViewController: UIViewController, UITextFieldDelegate {
         if let team = selectedTeam {
             teamLabel.text = team.teamName
         }
+        tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
+        tapRecognizer?.numberOfTapsRequired = 1
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         Helpers.hideActivityIndicator(activityIndicator)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        self.addKeyboardDismissRecognizer()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.removeKeyboardDismissRecognizer()
+    }
+    
+    // MARK: - Keyboard Fixes
+    func addKeyboardDismissRecognizer() {
+        self.view.addGestureRecognizer(tapRecognizer!)
+    }
+    
+    func removeKeyboardDismissRecognizer() {
+        self.view.removeGestureRecognizer(tapRecognizer!)
+    }
+    
+    func handleSingleTap(recognizer: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
 
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {

@@ -31,7 +31,15 @@ This user id can be used for general use of the app to view teams scores and cha
 userid: testcommissioner
 password: password
 
-This user id can be used to test the admin section of the site and change game scores. 
+This user id can be used to test the commissioner section of the site and change game scores. 
+This user id is also in the role of coach over the cardinals team in the test league. They should 
+be able to modifiy game scores related to the Cardinals team. Home team coach is responsible for
+updating game scores. Away team coach has confirmation role after Home Team coach has updated the score
+
+userid: testadmin
+password: password
+
+**added this role to version 2. The admin role is in charge of creating leagues.
 
 In addition, testing can be done by setting up any new account or by logging in with facebook.
 

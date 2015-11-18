@@ -39,7 +39,10 @@ updating game scores. Away team coach has confirmation role after Home Team coac
 userid: testadmin
 password: password
 
-**added this role to version 2. The admin role is in charge of creating leagues.
+**added this role to version 2. The admin role is in charge of creating leagues. When the admin role assigns
+and email address to a league, that email address should be linked to an email address of a registered user.
+That registered user will become the commissioner of the league that was created and will grant the ability to
+edit games, teams and coaches in the league
 
 In addition, testing can be done by setting up any new account or by logging in with facebook.
 **version 2 fixed missing facebook login. users can now log in with facebook.
